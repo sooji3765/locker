@@ -13,7 +13,7 @@ function message(msg) {
     return $('#message').text(msg);
 }
 
-//if (getJwtToken()) {
+if (getJwtToken()) {
     $.ajax({
         url:'http://localhost:3000/user/authcheck',
         type : 'get',
@@ -31,4 +31,4 @@ function message(msg) {
             }
         }
     })
-//}
+}
