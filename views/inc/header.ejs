@@ -4,8 +4,18 @@
 </div>
 
 <div class="header header-fixed header-logo-app">
-  <a href="/" class="header-title">Locker</a>
+  <a href="index.html" class="header-title">Sticky Mobile</a>
+  <a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
   <a href="page-contact.html" class="header-icon header-icon-2"><i class="fas fa-envelope"></i></a>
-  <a href="#" data-toggle-theme-switch class="header-icon header-icon-3"><i class="fas fa-moon"></i></a>
+  <a href="login" id="logout" class="header-icon header-icon-3"><i class="fas fa-moon"></i></a>
 </div>
-    
+
+<script type="text/javascript" src="/scripts/jquery.js"></script>
+<script type="text/javascript" src="/scripts/plugins.js"></script>
+<script type="text/javascript" src="/scripts/custom.js"></script>
+<script type="text/javascript" src="/scripts/common.js"></script>
+<script>
+  $('#logout').click(function(){
+    sessionStorage.clear();
+  });
+</script>
