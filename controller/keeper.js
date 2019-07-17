@@ -15,7 +15,7 @@ router.get('/store/:id', (req, res) => {
         });
     }
 
-    var sql1 = "SELECT * FROM locker.keeper WHERE id =?";
+    var sql1 = "SELECT * FROM keeper WHERE id =?";
 
     connection.query(sql1, [keeperId], function (err, row) {
 
@@ -23,7 +23,7 @@ router.get('/store/:id', (req, res) => {
         console.log(row);
 
         var sql2 = "SELECT r.id, r.reservation_id, r.keeper_id, r.score, r.comment, r.create_date , u.name as username " +
-            "FROM locker.review r JOIN locker.user u ON r.user_id = u.id WHERE r.keeper_id =?"
+            "FROM review r JOIN user u ON r.user_id = u.id WHERE r.keeper_id =?"
         connection.query(sql2, [keeperId], function (err, results) {
             if (err) console.error(err);
 
@@ -47,14 +47,14 @@ router.post('/review_submit', (req, res) => {
         comment
     } = req.body;
 
-    connection.query("SELECT keeper_id FROM locker.reservation_info WHERE id=?", [reservation_id],
+    connection.query("SELECT keeper_id FROM reservation_info WHERE id=?", [reservation_id],
         function (err, results) {
             if (err) console.error(err);
             console.log(results);
             var keeper_id = results[0].keeper_id;
             var score = 4.5;
             var user_id = 1;
-            var sql = "INSERT INTO locker.review(reservation_id, keeper_id, user_id, score, comment)" +
+            var sql = "INSERT INTO review(reservation_id, keeper_id, user_id, score, comment)" +
                 " VALUES(?, ?, ?, ?, ?)";
             connection.query(sql, [reservation_id, keeper_id, user_id, score, comment],
                 function (error, row) {
