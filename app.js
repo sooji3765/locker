@@ -16,6 +16,7 @@ app.set('jwt-secret', config.jwt_secret)
 app.use('/auth', require('./controller/auth'));
 app.use('/user', require('./controller/user'));
 app.use('/account', require('./controller/account'));
+app.use('/chat', require('./controller/chat'));
 //app.use('/contract', require('./controller/contract.js'));
 
 app.get('/', (req, res) => {
