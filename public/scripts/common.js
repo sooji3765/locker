@@ -4,7 +4,6 @@ var userid = "";
 var username = "";
 var email = "";
 var pagename = window.location.pathname;
-
 if (pagename != "/")
     $('.header a:first').after('<a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>');
 
