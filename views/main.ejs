@@ -199,7 +199,8 @@ var map;
 var myPosition;
 
 function initMap() {
-  // My location 
+  // My location
+  console.log("지도를 찍었습니다.") 
   var myLatLng = {lat: myLat, lng: myLng};
 
   // The map, centered at Seoul
@@ -305,7 +306,7 @@ $.ajax({
 
 </script>
 
-<script async defer
+<script 
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhHkFo-bYv_U9iLedicra9em2FpndEJS0&callback=initMap">
 </script>
 

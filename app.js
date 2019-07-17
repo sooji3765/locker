@@ -33,15 +33,17 @@ app.use('/', require('./controller/auth'));
 app.get('/myPage', (req,res) => {
   res.render('myPage');
 });
+
 //황세웅 추가부분 시작
 app.get('/', function(req, res){
+  console.log("call main")
     connection.query('SELECT * from prac', function(err, results) {
       if (err) throw err;
       res.render('main',{user : results});
     });
   });
 
-  app.get('/getMarker', function(req, res){
+app.get('/getMarker', function(req, res){
     connection.query('SELECT * from prac', function(err, results) {
       if (err) throw err;
       res.json(results);
