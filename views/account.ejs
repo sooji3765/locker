@@ -15,27 +15,10 @@
         
 <div id="page">
         
-    <div id="page-preloader">
-        <div class="loader-main"><div class="preload-spinner border-highlight"></div></div>
-    </div>
+     <% include ./inc/header.ejs %>
+    <% include ./inc/footer.ejs %>
     
-	<div class="header header-fixed header-logo-app">
-        <a href="index.html" class="header-title">Sticky Mobile</a>
-		<a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>
-		<a href="page-contact.html" class="header-icon header-icon-2"><i class="fas fa-envelope"></i></a>
-		<a href="#" data-toggle-theme-switch class="header-icon header-icon-3"><i class="fas fa-moon"></i></a>
-	</div>
-        
-    <div id="footer-menu" class="footer-menu-5-icons footer-menu-style-1">
-        <a href="index.html"><i class="fa fa-home"></i><span>Home</span></a>
-        <a href="index-components.html" class="active-nav"><i class="fa fa-star"></i><span>Features</span></a>
-        <a href="index-pages.html"><i class="fa fa-heart"></i><span>Pages</span></a>
-        <a href="index-search.html"><i class="fa fa-search"></i><span>Search</span></a>
-        <a href="#" data-menu="menu-settings"><i class="fa fa-cog"></i><span>Settings</span></a>
-        <div class="clear"></div>
-    </div>
-    
-    <div class="snackbars snackbars-boxed snackbar-round"></div>
+    <%# <div class="snackbars snackbars-boxed snackbar-round"></div> %>
     
     <div class="page-content header-clear-medium">
         
@@ -79,6 +62,18 @@
                 <input id="userseqnum" type="text" placeholder="userseqnum">   
             </div>     
         </div>
+
+        <div class="content-boxed">
+            <div class="content">           
+                <h3 class="bolder">Get your Account num</h3>
+                <p>
+                   if you have it, Check the your account.
+                   Or You don't have it, click this button.
+                </p>
+                <a id="getBtn" class="button button-m shadow-small button-circle bg-green1-dark">take a account</a>
+                <input id="fintech_use_num" type="text" placeholder="usenum">
+            </div>     
+        </div>
         
         <a id="payBtn" class="button button-margins button-m button-full button-round-small shadow-medium bg-highlight bottom-30">Pay Now</a>
         
@@ -96,9 +91,11 @@
 <script type="text/javascript" src="/scripts/jquery.js"></script>
 <script type="text/javascript" src="/scripts/plugins.js"></script>
 <script type="text/javascript" src="/scripts/custom.js"></script>
+<script type="text/javascript" src="/scripts/common.js"></script>
 
 <script>
-$('#authBtn').click(function(){
+    $('#authBtn').click(function(){
+    console.log("clcik");
     // 변경해주세요. 
       var client_id = "l7xx95f2ecb17e274e1486240d91f16cadbe";
       var redirect_uri = "http://localhost:3000/callback";
@@ -121,28 +118,47 @@ $('#authBtn').click(function(){
             var tmpwindow = window.open("about:blank");
             tmpwindow.location = data.location;//추가
         }
-      })
+      });
     });
 
 
+    $("#payBtn").click(function(){
+            var accessToken = $("#accessToken").val();
+            var refreshToken =$("#refreshToken").val();
+            var userseqnum = $("#userseqnum").val();
+            var fintech_use_num = $("#fintech_use_num").val();
+
+            $.ajax({
+                url:'/account/transfer/withdraw',
+                type : 'POST',
+                data: {
+                    accessToken :accessToken,
+                    refreshToken : refreshToken,
+                    userseqnum : userseqnum,
+                    fintech_use_num : fintech_use_num
+                },
+                success:function(data){
+                alert(data);
+                location.href = "/reservation/info/"+<%=reservation_id%>  
+                }
+            });
+        });
+
     // payBtn click
 
-    $("#payBtn").click(function(){
+    $("#getBtn").click(function(){
+        console.log('click');
         var accessToken = $("#accessToken").val();
-        var refreshToken =$("#refreshToken").val();
         var userseqnum = $("#userseqnum").val();
-
         $.ajax({
-            url:'/account/transfer/withdraw',
+            url:'/account/search',
             type : 'POST',
             data: {
                 accessToken :accessToken,
-                refreshToken : refreshToken,
                 userseqnum : userseqnum
             },
             success:function(data){
-              alert(data);
-              location.href = "/reservation/info/"+<%=reservation_id%>  
+                $("#fintech_use_num").val(data);
             }
         });
     });
