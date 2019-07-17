@@ -347,7 +347,9 @@
                         if(data == '1'){ // 블록 체인
                             location.href="/reservation/block";
                         }else{ // 간편결제
-                            location.href="/reservation/pay";
+                            console.log(data);
+                            console.log(data.reservation_id);
+                            location.href="/reservation/pay/"+data.reservation_id;
                         }
                     },
                     error: function () {
