@@ -3,10 +3,7 @@ var TOKEN_KEY = "jwtToken";
 var userid = "";
 var username = "";
 var email = "";
-
 var pagename = window.location.pathname;
-if (pagename != "/")
-    $('.header a:first').after('<a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>');
 
 // FUNCTIONS =============================================================
 function getJwtToken() {
@@ -21,9 +18,8 @@ function message(msg) {
     return $('#message').text(msg);
 }
 
-window.addEventListener("load", function () {
+function init(){
     if (getJwtToken()) {
-
         $.ajax({
             url: 'http://localhost:3000/user/authcheck',
             type: 'get',
@@ -32,11 +28,9 @@ window.addEventListener("load", function () {
             },
             success: function (data) {
                 if (data !== null) {
-
                     userid = data.userId;
                     username = data.userName;
                     email = data.email;
-
                     console.log("jwtToken: " + getJwtToken());
                     console.log("userid = " + userid);
                     console.log("username = " + username);
@@ -47,4 +41,9 @@ window.addEventListener("load", function () {
     } else if (window.location.pathname.indexOf("login") < 0 && window.location.pathname.indexOf("signup") < 0) {
         window.location.href = "/user/login";
     }
-});
+
+    if (pagename != "/")
+    $('.header a:first').after('<a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>');
+}
+
+init();
