@@ -1,5 +1,6 @@
 // VARIABLES =============================================================
 var TOKEN_KEY = "jwtToken";
+var userid = "";
 var username = "";
 var email = "";
 var user_id = "";
