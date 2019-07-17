@@ -34,5 +34,21 @@ app.get('/', (req, res) => {
     res.render('index');
 });
 
+//황세웅 추가부분 시작
+app.get('/main', function(req, res){
+    connection.query('SELECT * from prac', function(err, results) {
+      if (err) throw err;
+      res.render('main',{user : results});
+    });
+  });
+
+  app.get('/getMarker', function(req, res){
+    connection.query('SELECT * from prac', function(err, results) {
+      if (err) throw err;
+      res.json(results);
+    });
+  });
+//황세웅 추가부분 끝
+
 app.listen(port);
 console.log("Listening on port ", port);
