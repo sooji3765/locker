@@ -44,29 +44,29 @@
                   <input type="password" id="confirm_password" placeholder="Confirm your Password">
               </div>
               
+              <div><button id="authBtn" type="button" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-0 bottom-0">계좌 인증</button></div>
               <div class="input-style has-icon input-style-1 input-required">
                   <i class="input-icon fa fa-lock font-11"></i>
                   <span>Access Token</span>
                   <em>(required)</em>
-                  <input id="accessToken" type="text" placeholder="accessToken">
+                  <input id="accessToken" type="text" placeholder="accessToken" disabled>
               </div>   
               <div class="input-style has-icon input-style-1 input-required">
                   <i class="input-icon fa fa-lock font-11"></i>
                   <span>Refresh Token</span>
                   <em>(required)</em>
-                  <input  id="refreshToken" type="text" placeholder="refreshToken">
+                  <input  id="refreshToken" type="text" placeholder="refreshToken" disabled>
               </div>   
               <div class="input-style has-icon input-style-1 input-required">
                   <i class="input-icon fa fa-lock font-11"></i>
                   <span>finusernum</span>
                   <em>(required)</em>
-                  <input id="userseqnum" type="text" placeholder="userseqnum">
+                  <input id="userseqnum" type="text" placeholder="userseqnum" >
               </div>   
 
               <div class="top-20 bottom-20">
                   <a href="#" data-menu="menu-signin" class="center-text font-11 color-gray2-dark">Already Registered? Sign In Here.</a>
               </div>
-              <button id="authBtn" type="button" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">계좌 인증</button>
               <div class="clear"></div>
               <button id="joinBtn" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">회원가입</button>
             </div>
@@ -84,9 +84,10 @@
   <script type="text/javascript" src="/scripts/custom.js"></script>
   <script type="text/javascript" src="/scripts/common.js"></script>
   <script>
+    var config = require('../config/config');
     $('#authBtn').click(function(){
-      var client_id = "l7xxe776c612dbe5493cbbb93789358e076f";
-      var redirect_uri = "http://localhost:3000/auth/callback";
+      var client_id = config.client_id;
+      var redirect_uri = config.redirect_uri;
       var scope = "login inquiry transfer";
       var response_type = "JSON";
       var qs = 
