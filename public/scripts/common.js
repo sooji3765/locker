@@ -23,9 +23,11 @@ if (getJwtToken()) {
         success:function(data){
             if (data !== null){
                 
+                userid = data.userId;
                 username = data.userName;
                 email = data.email;
 
+                console.log("userid = " + userid);
                 console.log("username = " + username);
                 console.log("email = " + email);
             }

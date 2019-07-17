@@ -1,7 +1,9 @@
 const jwt = require('jsonwebtoken');
+var sessionstorage = require('sessionstorage');
 
 const authMiddleware = (req, res, next) => {
     const secret = req.app.get('jwt-secret');
+    //console.log(sessionstorage.getItem('jwtToken'));
     const token = req.headers['x-access-token'] || req.query.token;
     console.error(token);
     if(!token) {
@@ -27,8 +29,8 @@ const authMiddleware = (req, res, next) => {
         })
     }
     p.then((decoded)=>{
-        req.decoded = decoded
-        next()
+        req.decoded = decoded;
+        next();
     }).catch(onError)
 }
 module.exports = authMiddleware;
