@@ -4,12 +4,12 @@ var sessionstorage = require('sessionstorage');
 var io = require('socket.io')(http);
 
 const mysql = require('mysql');
-//const auth = require('./authcheck');
+const auth = require('./authcheck');
 
 //router.use(auth);
 router.get('/', (req, res) => {
-  //console.log("/////" + sessionstorage.getItem('jwtToken'));
-  //res.set({'x-access-token':  sessionstorage.getItem('jwtToken')});
+  console.log("/////" + sessionstorage.getItem('jwtToken'));
+  res.set({'x-access-token':  sessionstorage.getItem('jwtToken')});
   res.render("chat");
 });
 

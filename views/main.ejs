@@ -199,7 +199,8 @@ var map;
 var myPosition;
 
 function initMap() {
-  // My location 
+  // My location
+  console.log("지도를 찍었습니다.") 
   var myLatLng = {lat: myLat, lng: myLng};
 
   // The map, centered at Seoul
@@ -242,7 +243,7 @@ $.ajax({
                 console.log(data);
                 for (var i = 0; i < data.length; i++) {
                     let marker = new google.maps.Marker({
-                        position: {lat: data[i].lat, lng: data[i].lng},
+                        position: {lat: parseFloat(data[i].location_lat), lng: parseFloat(data[i].location_lon)},
                         map: map,
                         icon: image,
                         shape: shape,
@@ -251,14 +252,12 @@ $.ajax({
                     });
                     
                     var contentString = '<div id="iw-container">' +
-                    '<div class="iw-title">'+marker.contents+'</div>' +
+                    '<div class="iw-title">'+data[i].name+'</div>' +
                     '<div class="iw-content">' +
                       '<div class="iw-subTitle">'+marker.position+'</div>' +
-                      '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg" alt="Porcelain Factory of Vista Alegre" height="115" width="83">' +
-                      '<p>Founded in 1824, the Porcelain Factory of Vista Alegre was the first industrial unit dedicated to porcelain production in Portugal. For the foundation and success of this risky industrial development was crucial the spirit of persistence of its founder, José Ferreira Pinto Basto. Leading figure in Portuguese society of the nineteenth century farm owner, daring dealer, wisely incorporated the liberal ideas of the century, having become "the first example of free enterprise" in Portugal.</p>' +
-                      '<div class="iw-subTitle">Contacts</div>' +
-                      '<p>VISTA ALEGRE ATLANTIS, SA<br>3830-292 Ílhavo - Portugal<br>'+
-                      '<br>Phone. +351 234 320 600<br>e-mail: geral@vaa.pt<br>www: www.myvistaalegre.com</p>'+
+                      '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg"'+
+                      '<br>Address. '+data[i].address+
+                      '<br>Phone. '+data[i].keeper_phone+'<br>e-mail:'+data[i].email+'<br>www: www.myvistaalegre.com</p>'+
                     '</div>' +
                     '<div class="iw-bottom-gradient"></div>' +
                   '</div>';                  
@@ -305,11 +304,12 @@ $.ajax({
 
 </script>
 
-<script async defer
+<script 
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhHkFo-bYv_U9iLedicra9em2FpndEJS0&callback=initMap">
 </script>
 
 <script type="text/javascript" src="scripts/jquery.js"></script>
 <script type="text/javascript" src="scripts/plugins.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
+<script type="text/javascript" src="scripts/common.js"></script>
 </body>

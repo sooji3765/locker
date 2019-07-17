@@ -3,9 +3,8 @@ var sessionstorage = require('sessionstorage');
 
 const authMiddleware = (req, res, next) => {
     const secret = req.app.get('jwt-secret');
-    //console.log(sessionstorage.getItem('jwtToken'));
     const token = req.headers['x-access-token'] || req.query.token;
-    console.error(token);
+    //console.error(token);
     if(!token) {
         //res.redirect('/user/login');
         return res.status(403).json({
