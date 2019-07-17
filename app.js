@@ -30,6 +30,9 @@ app.use('/chat', require('./controller/chat'));
 app.use('/', require('./controller/auth'));
 //app.use('/contract', require('./controller/contract.js'));
 
+app.get('/myPage', (req,res) => {
+  res.render('myPage');
+});
 //황세웅 추가부분 시작
 app.get('/', function(req, res){
     connection.query('SELECT * from prac', function(err, results) {
