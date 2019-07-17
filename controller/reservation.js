@@ -50,13 +50,14 @@ router.post('/check', (req, res) => {
         if (pay_state == 1) res.json(result); // block_chain
 
         else {
-            var sql2 = "select * from locker.reservation_info where user_id=? " +
+            var sql2 = "select id from locker.reservation_info where user_id=? " +
                 " order by id desc" +
                 " limit 1";
             connection.query(sql2, [user_id], function (error, row) {
                 if (error) console.error(error);
 
-                var reservation_id = row[0];
+                console.log(row);
+                var reservation_id = row[0].id;
                 console.log(reservation_id);
                 result = {
                     "data": 2,
@@ -68,8 +69,11 @@ router.post('/check', (req, res) => {
     });
 });
 
-router.get('/pay', (req, res) => {
-    res.render('account');
+router.get('/pay/:id', (req, res) => {
+    const reservation_id = req.params.id;
+    res.render('account', {
+        reservation_id: reservation_id
+    });
 });
 
 router.get('/info/:id', (req, res) => {

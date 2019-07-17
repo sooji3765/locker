@@ -28,8 +28,6 @@ app.use('/reservation', require('./controller/reservation'));
 app.use('/account', require('./controller/account'));
 
 app.use('/', require('./controller/auth'));
-app.use('/contract', require('./controller/contract.js'));
-
 //app.use('/contract', require('./controller/contract.js'));
 
 app.get('/', (req, res) => {

@@ -87,8 +87,8 @@ router.get('/transaction_list', (req, res) => {
 
 // 출금
 router.post('/transfer/withdraw', (req, res) => {
-    fintech_use_num = "199005200057726135180939";
-    accessToken = "9dc3e1d3-7c9f-4311-bcd5-bdde471aef18";
+    const fintech_use_num = "199005200057726135180939";
+    const accessToken = req.body.accessToken;
     var url = "https://testapi.open-platform.or.kr/transfer/withdraw";
 
     var option = {
