@@ -1,12 +1,12 @@
 const mysql = require('mysql');
 const connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '1',
-  database : 'fintech'
+  host: 'localhost',
+  user: 'root',
+  password: 'root',
+  database: 'locker'
 })
 
-connection.connect(function(err) {
+connection.connect(function (err) {
   if (err) {
     console.error('error connecting: ' + err.stack);
     return;

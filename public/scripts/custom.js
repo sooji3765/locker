@@ -866,38 +866,38 @@ $(document).ready(function(){
 		}
 
 		//Countdown
-		function countdown(dateEnd) {
-		  var timer, years, days, hours, minutes, seconds;
-		  dateEnd = new Date(dateEnd);
-		  dateEnd = dateEnd.getTime();
-		  if ( isNaN(dateEnd) ) {return;}
-		  timer = setInterval(calculate, 1);
-		  function calculate() {
-			var dateStart = new Date();
-			var dateStart = new Date(dateStart.getUTCFullYear(), dateStart.getUTCMonth(), dateStart.getUTCDate(), dateStart.getUTCHours(), dateStart.getUTCMinutes(), dateStart.getUTCSeconds());
-			var timeRemaining = parseInt((dateEnd - dateStart.getTime()) / 1000)
-			if ( timeRemaining >= 0 ) {
-			  years    = parseInt(timeRemaining / 31536000);
-			  timeRemaining   = (timeRemaining % 31536000);		
-			  days    = parseInt(timeRemaining / 86400);
-			  timeRemaining   = (timeRemaining % 86400);
-			  hours   = parseInt(timeRemaining / 3600);
-			  timeRemaining   = (timeRemaining % 3600);
-			  minutes = parseInt(timeRemaining / 60);
-			  timeRemaining   = (timeRemaining % 60);
-			  seconds = parseInt(timeRemaining);
+		// function countdown(dateEnd) {
+		//   var timer, years, days, hours, minutes, seconds;
+		//   dateEnd = new Date(dateEnd);
+		//   dateEnd = dateEnd.getTime();
+		//   if ( isNaN(dateEnd) ) {return;}
+		//   timer = setInterval(calculate, 1);
+		//   function calculate() {
+		// 	var dateStart = new Date();
+		// 	var dateStart = new Date(dateStart.getUTCFullYear(), dateStart.getUTCMonth(), dateStart.getUTCDate(), dateStart.getUTCHours(), dateStart.getUTCMinutes(), dateStart.getUTCSeconds());
+		// 	var timeRemaining = parseInt((dateEnd - dateStart.getTime()) / 1000)
+		// 	if ( timeRemaining >= 0 ) {
+		// 	  years    = parseInt(timeRemaining / 31536000);
+		// 	  timeRemaining   = (timeRemaining % 31536000);		
+		// 	  days    = parseInt(timeRemaining / 86400);
+		// 	  timeRemaining   = (timeRemaining % 86400);
+		// 	  hours   = parseInt(timeRemaining / 3600);
+		// 	  timeRemaining   = (timeRemaining % 3600);
+		// 	  minutes = parseInt(timeRemaining / 60);
+		// 	  timeRemaining   = (timeRemaining % 60);
+		// 	  seconds = parseInt(timeRemaining);
 
-				if($('.countdown').length){
-				  $(".countdown #years")[0].innerHTML    = parseInt(years, 10);
-				  $(".countdown #days")[0].innerHTML    = parseInt(days, 10);
-				  $(".countdown #hours")[0].innerHTML   = ("0" + hours).slice(-2);
-				  $(".countdown #minutes")[0].innerHTML = ("0" + minutes).slice(-2);
-				  $(".countdown #seconds")[0].innerHTML = ("0" + seconds).slice(-2);
-				}
-			} else { return; }}
-		  function display(days, hours, minutes, seconds) {}
-		}
-		countdown('01/19/2030 03:14:07 AM');	
+		// 		if($('.countdown').length){
+		// 		  $(".countdown #years")[0].innerHTML    = parseInt(years, 10);
+		// 		  $(".countdown #days")[0].innerHTML    = parseInt(days, 10);
+		// 		  $(".countdown #hours")[0].innerHTML   = ("0" + hours).slice(-2);
+		// 		  $(".countdown #minutes")[0].innerHTML = ("0" + minutes).slice(-2);
+		// 		  $(".countdown #seconds")[0].innerHTML = ("0" + seconds).slice(-2);
+		// 		}
+		// 	} else { return; }}
+		//   function display(days, hours, minutes, seconds) {}
+		// }
+		// countdown('01/19/2030 03:14:07 AM');	
 
         
         //Alerts

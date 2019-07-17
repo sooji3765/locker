@@ -1,0 +1,361 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <title>Reservation Page</title>
+    <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <link rel="stylesheet" type="text/css" href="/styles/framework.css">
+    <link rel="stylesheet" type="text/css" href="/fonts/css/fontawesome-all.min.css">
+    <link rel="stylesheet" type="text/css" href="/styles/jquery.datetimepicker.min.css">
+
+</head>
+
+<body class="theme-light" data-background="none" data-highlight="blue2">
+
+    <div id="page">
+
+       <% include ./inc/header.ejs %>
+        <% include ./inc/footer.ejs %>
+        
+
+        <div class="page-content header-clear-medium">
+
+            <!-- header -->
+            <div data-height="130" class="caption caption-margins round-medium shadow-huge">
+                <div class="caption-center right-15 top-15 text-right">
+                    <a href="#" class="back-button button button-xs button-round-huge bg-highlight">Back Home</a>
+                </div>
+                <div class="caption-center left-15 text-left">
+                    <h1 class="color-white bolder">Now Reservation</h1>
+                    <p class="under-heading color-white opacity-90 bottom-0">
+                        To book here
+                    </p>
+                </div>
+                <div class="caption-overlay bg-black opacity-70"></div>
+                <div class="caption-bg bg-18"></div>
+            </div>
+
+
+            <link rel="stylesheet" type="text/css" href="/styles/store.css">
+
+            <!-- date box -->
+            <form id="dataform" name="form" action="/reservation/check" method="POST">
+                <div class="content-boxed">
+                    <div class="content accordion-style-2">
+                        <h3 class="bolder">Date Select</h3>
+                        <p>
+                            Please select a date and date to find the item.
+                        </p>
+
+                    </div>
+                    <div class="content bottom-0">
+                        <div class="link-list link-list-1">
+                            <a href="#" data-menu="menu-tour-1">
+                                <i class="fa fa-calendar-alt color-yellow1-dark"></i>
+                                <span>Start Date</span>
+                                <span><input id="startDate" type="text" placeholder="choose datetime"></span>
+
+                                <!-- <span class="hidden">2019/07/01 12:00</span> -->
+                                <!-- <i class="fa fa-angle-right"></i> -->
+                            </a>
+                        </div>
+                        <div class="link-list link-list-1">
+                            <a href="#" data-menu="menu-share-list">
+                                <i class="fa fa-calendar-alt color-blue2-dark"></i>
+                                <span>End Date</span>
+                                <span><input id="endDate" type="text" placeholder="choose datetime"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- select product -->
+                <div class="content-boxed">
+                    <div class="store-cart-1 bottom-30">
+                        <img class="preload-image" src="/images/empty.png" data-src="/images/products/big.png"
+                            alt="img">
+                        <strong>Big Baggage <br>20~30kg</strong>
+                        <em>$<input type="text" id="priceBig" value="20" style="width:20px;"></em>
+
+                        <div class="store-cart-qty">
+                            <a id="minusBtn" href="#"><i class="fa fa-minus"></i></a>
+                            <input type="text" value="1" id="cntVal">
+                            <a id="plusBtn" href="#"><i class="fa fa-plus"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="content-boxed">
+                    <div class="store-cart-1 bottom-30">
+                        <img class="preload-image" src="/images/empty.png" data-src="/images/products/small.png"
+                            alt="img">
+                        <strong>Small Baggage<br>1-19kg</strong>
+                        <em>$<input type="text" id="priceSmall" value="10" style="width:20px;"></em>
+                        <div class="store-cart-qty">
+                            <a id="minusBtn2" href="#"><i class="fa fa-minus"></i></a>
+                            <input type="text" value="1" id="cntVal2">
+                            <a id="plusBtn2" href="#"><i class="fa fa-plus"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="content-boxed">
+                    <div class="store-cart-1 bottom-30">
+                        <img class="preload-image" src="/images/empty.png" data-src="/images/products/insurance.png"
+                            alt="img">
+                        <strong>Insurance</strong>
+                        <span class="color-yellow2-dark">if you want to get surety insurance, check the insurance</span>
+                        <em>$20</em>
+                        <span>
+                            <div class="fac fac-checkbox fac-green">
+                                <input style="background-color: green;" id="box3-fac-checkbox" type="checkbox"
+                                    value="1">
+                                
+                            </div>
+                        </span>
+                        <span>check Insurance<input class="fac fac-checkbox fac-green" type="checkbox" value="1"
+                                id="checkInsu"></span>
+                    </div>
+                </div>
+
+                <!-- total price -->
+                <div class="content-boxed">
+                    <div class="content">
+                        <div class="store-cart-total">
+                            <strong>Big Baggage</strong>
+                            <span>$ <input type="text" id="bigTotal" value="20" style="width:20px;"></span>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="store-cart-total">
+                            <strong>Small Baggage</strong>
+                            <span>$ <input type="text" id="smallTotal" value="10" style="width:20px;"></span>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="store-cart-total">
+                            <strong class="color-highlight">Insurance</strong>
+                            <span class="color-highlight">$ <input type="text" id="insuranTotal" value="0"
+                                    style="width:20px;"></span>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="store-cart-total bottom-20">
+                            <strong class="uppercase ultrabold">Grand Total</strong>
+                            <span class="uppercase ultrabold">$ <input type="text" id="totalPrice" value="0"
+                                    style="width:20px;"></span>
+                            <div class="clear"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-boxed">
+                    <div class="content">
+                        <h3 class="bolder">Choose Pay</h3>
+                        <br>
+                        <div class="input-style input-style-2 input-required">
+                            <span>Select a Value</span>
+                            <em><i class="fa fa-angle-down"></i></em>
+                            <select id="pay_state">
+                                <option value="default" disabled selected>Select a Value</option>
+                                <option value="1">BlockChain</option>
+                                <option value="2">Pay</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+            </form>
+
+            <a id="reserBtn"
+                class="button bg-highlight button-round-small shadow-large button-full button-margins button-m bottom-30">Reservation
+            </a>
+
+            <div class="menu-hider"></div>
+        </div>
+
+
+        <script type="text/javascript" src="/scripts/jquery.js"></script>
+        <script type="text/javascript" src="/scripts/plugins.js"></script>
+        <script type="text/javascript" src="/scripts/custom.js"></script>
+        <!-- datetime picker -->
+        <script type="text/javascript" src="/scripts/jquery.datetimepicker.js"></script>
+        <!-- big count num -->
+        <script>
+            var minBtn = $("#minusBtn").click(function () {
+                var cnt = Number.parseInt($("#cntVal").val());
+                console.log(cnt);
+                var changCnt = cnt - 1;
+                if (cnt > 0) {
+                    $("#cntVal").val(changCnt);
+
+
+                    $("#priceBig").val(changCnt * 20);
+                    $("#bigTotal").val(changCnt * 20);
+                } else alert("최소값입니다.");
+
+                totalChange();
+            });
+
+            var plusBtn = $("#plusBtn").click(function () {
+                var cnt = Number.parseInt($("#cntVal").val());
+                console.log(cnt);
+                var changCnt = cnt + 1;
+                if (cnt === 5) {
+                    alert("최대값입니다.");
+                } else {
+                    $("#cntVal").val(changCnt);
+                    $("#priceBig").val(changCnt * 20);
+                    $("#bigTotal").val(changCnt * 20);
+                }
+                totalChange();
+            });
+
+
+            var minBtn = $("#minusBtn2").click(function () {
+                var cnt = Number.parseInt($("#cntVal2").val());
+                console.log(cnt);
+                var changCnt = cnt - 1;
+                if (cnt > 0) {
+                    $("#cntVal2").val(changCnt);
+                    $("#priceSmall").val(changCnt * 10);
+                    $("#smallTotal").val(changCnt * 10);
+
+
+                } else alert("최소값입니다.");
+
+                totalChange();
+            });
+
+            var plusBtn = $("#plusBtn2").click(function () {
+                var cnt = Number.parseInt($("#cntVal2").val());
+                console.log(cnt);
+                var changCnt = cnt + 1;
+                if (cnt === 5) {
+                    alert("최대값입니다.");
+                } else {
+                    $("#cntVal2").val(changCnt);
+                    $("#priceSmall").val(changCnt * 10);
+                    $("#smallTotal").val(changCnt * 10);
+                }
+                totalChange();
+            });
+
+            $(document).ready(function () {
+                $('#startDate').datetimepicker();
+            });
+            $(document).ready(function () {
+                $('#endDate').datetimepicker();
+            });
+
+            $("#startDate").change(function () {
+                console.log($(this).val());
+                var date = new Date($(this).val());
+
+                var now = new Date();
+                var diff = date - now;
+
+                if (diff < 0) {
+                    alert("Please check the time!");
+                    $("#startDate").focus;
+                }
+                console.log(diff);
+                console.log(now);
+            });
+
+            $("#endDate").change(function () {
+                var endDate = new Date($(this).val());
+                var now = new Date();
+
+                var startDate = new Date($("#startDate").val());
+                var diff = endDate - startDate;
+                //var between = (endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60;
+
+                console.log(calDate(endDate, startDate));
+                if (endDate - now < 0) alert("Please check the time!");
+                if (diff < 0) alert("Please check the start time!");
+
+                totalChange();
+            });
+
+            // insurance isChecked
+            $("#checkInsu").change(function () {
+                var checked = $(this).is(":checked");
+                console.log(checked);
+
+                if (checked) $("#insuranTotal").val(20);
+                else $("#insuranTotal").val(0);
+                totalChange();
+            });
+
+            // check total price info
+            function totalChange() {
+                var start = new Date($("#startDate").val());
+                var end = new Date($("#endDate").val())
+                var time = calDate(end, start);
+                console.log(time);
+                if (time > 0) {
+                    var small = $("#smallTotal").val();
+                    var big = $("#bigTotal").val();
+                    var insran = $("#insuranTotal").val();
+                    var total = (Number.parseInt(small) + Number.parseInt(big)) * time + Number.parseInt(insran);
+                    $("#totalPrice").val(total);
+                } else {
+                    $("#totalPrice").val("0");
+                }
+            }
+
+            // calculation Date Function
+            function calDate(date1, date2) {
+                return (date1.getTime() - date2.getTime()) / 1000 / 60 / 60;
+            }
+
+            //click reserBtn
+            $("#reserBtn").click(function () {
+
+                console.log("button click");
+                var keeper_id = '<%=keeper_id %>';
+                var user_id = 1;
+                var bigCnt = $("#cntVal").val();
+                var smCnt = $("#cntVal2").val();
+                var product_amount = "Big : " + bigCnt + " Small : " + smCnt;
+                var reservation_start_date = $("#startDate").val();
+                var reservation_end_date = $("#endDate").val();
+                var insurance_flag = $(this).is(":checked") == true ? 1 : 0;
+                var total_price = $("#totalPrice").val();
+                var pay_state = $("#pay_state").val();
+
+                $.ajax({
+                    url: '/reservation/check',
+                    type: 'POST',
+                    data: {
+                        keeper_id: keeper_id,
+                        user_id: user_id,
+                        product_amount: product_amount,
+                        reservation_start_date: reservation_start_date,
+                        reservation_end_date: reservation_end_date,
+                        total_price: total_price,
+                        insurance_flag: insurance_flag,
+                        pay_state: pay_state
+                    },
+                    success: function (data) {
+                        if(data == '1'){ // 블록 체인
+                            location.href="/reservation/block";
+                        }else{ // 간편결제
+                            location.href="/reservation/pay";
+                        }
+                    },
+                    error: function () {
+                        alert("Check your reservation form");
+                    }
+                })
+            });
+        </script>
+
+
+</body>
