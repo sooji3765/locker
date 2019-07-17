@@ -10,6 +10,10 @@ function getJwtToken() {
     return sessionStorage.getItem(TOKEN_KEY);
 }
 
+function throwJwtToken() {
+    return sessionStorage.getItem(TOKEN_KEY,NULL);
+}
+
 function message(msg) {
     return $('#message').text(msg);
 }

@@ -5,6 +5,10 @@ const mysql = require('mysql');
 const auth = require('./authcheck');
 var connection   = require('../config/database');
 
+router.get('/myPage', (req,res) => {
+  res.render('myPage');
+});
+
 router.get('/login', (req, res) => {
   res.render('login');
 });
