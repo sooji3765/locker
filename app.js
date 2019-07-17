@@ -36,15 +36,17 @@ app.get('/myPage', (req,res) => {
 
 //황세웅 추가부분 시작
 app.get('/', function(req, res){
-  console.log("call main")
-    connection.query('SELECT * from prac', function(err, results) {
+    connection.query('SELECT * from user', function(err, results) {
       if (err) throw err;
       res.render('main',{user : results});
     });
   });
 
 app.get('/getMarker', function(req, res){
-    connection.query('SELECT * from prac', function(err, results) {
+    connection.query('select k.id, k.user_id, k.name, k.address, keeper_phone,k.insurance, k.location_lat,k.location_lon, u.email '+
+    'from keeper k join user u '+
+    'on k.user_id = u.id;'
+    ,function(err, results) {
       if (err) throw err;
       res.json(results);
     });
