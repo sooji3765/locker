@@ -27,12 +27,8 @@ app.use('/keeper', require('./controller/keeper'));
 app.use('/reservation', require('./controller/reservation'));
 app.use('/account', require('./controller/account'));
 app.use('/chat', require('./controller/chat'));
-app.use('/', require('./controller/auth'));
+app.use('/mypage', require('./controller/mypage'));
 //app.use('/contract', require('./controller/contract.js'));
-
-app.get('/myPage', (req,res) => {
-  res.render('myPage');
-});
 
 //황세웅 추가부분 시작
 app.get('/', function(req, res){
