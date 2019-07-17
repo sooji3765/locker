@@ -8,7 +8,7 @@ var config = require('../config/config');
 router.get('/callback', (req, res) => {
     var authcode = req.query.code;
     var getTokenUrl = "https://testapi.open-platform.or.kr/oauth/2.0/token";
-
+    var user_id = 1;
     var option = {
         method: "POST",
         url: getTokenUrl,
@@ -31,6 +31,9 @@ router.get('/callback', (req, res) => {
             console.log(body);
             var accessRequestResult = JSON.parse(body);
             console.log(accessRequestResult);
+            var sql = "UPDATE SET acc"
+            connection.query
+
             res.render('resultChild', {
                 data: accessRequestResult
             })
