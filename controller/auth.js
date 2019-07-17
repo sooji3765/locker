@@ -28,15 +28,20 @@ router.get('/callback', (req, res) => {
             console.error(err);
             throw err;
         } else {
-            console.log(body);
+
             var accessRequestResult = JSON.parse(body);
             console.log(accessRequestResult);
-            var sql = "UPDATE SET acc"
-            connection.query
+            var accessToken = accessRequestResult.access_token;
 
-            res.render('resultChild', {
-                data: accessRequestResult
-            })
+            var refreshToken = accessRequestResult.refresh_token;
+            var finusernum = accessRequestResult.user_seq_no;
+            var sql = "UPDATE user SET accessToken =? , refreshToken=?, finusernum=? WHERE id=?"
+            connection.query(sql, [accessToken, refreshToken, finusernum, user_id],
+                function (err, result) {
+                    res.render('resultChild', {
+                        data: accessRequestResult
+                    });
+                });
         }
     });
 });
