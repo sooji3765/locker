@@ -22,9 +22,20 @@
                   <span>message</span>
                   <input id="message" type="text" placeholder="Message" value="<%= data %>"">
                 </div>
-
                 <button id="submitBtn" type="button" class="right button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">Submit</button>
-            </div>
+            
+                <div class="input-style input-style-1 input-required">
+                  <span>From address</span>
+                  <input id="fromAddr" type="text" placeholder="from address" value="0x3bbb90ee2bbd6536aa9a79bc9ee235ac6801b373">
+                  <input id="passphase" type="password" placeholder="password" value="user1">
+                  <span>To address</span>
+                  <input id="toAddr" type="text" placeholder="to address" value="0x2fc0cb1146DCbeb12F2aff4EC663F3C8845bf836">
+                  <span>ether</span>
+                  <input id="ether" type="number" placeholder="Ether">
+                </div>
+                <button id="transferBtn" type="button" class="right button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">Transfer</button>
+            
+              </div>
         </div>
         
         <div class="content-boxed">
@@ -67,6 +78,26 @@
             }, 3000);
           }
       })
-    })
+    });
+
+    $('#transferBtn').click(function(){
+      var ether = $('#ether').val();
+      $.ajax({
+          url:'http://localhost:3000/contract/sendTransaction',
+          type : 'POST',
+          data:{
+            ether : ether,
+            fromAddr : $('#fromAddr').val(),
+            toAddr : $('#toAddr').val(),
+            passphase : $('#passphase').val(),
+          },
+          success:function(data){
+            setTimeout(function() {
+              alert("updated!")
+              location.reload();
+            }, 3000);
+          }
+      })
+    });
   </script>
 </body>

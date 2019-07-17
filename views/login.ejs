@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <% include ./inc/head.ejs %>
+  </head>
+
+<body class="theme-light" data-background="none" data-highlight="blue2">
+        
+<div id="page">
+    <% include ./inc/header.ejs %>
+    <% include ./inc/footer.ejs %>
+        
+    <div class="page-content">   
+        
+        <div data-height="cover-header" class="caption bottom-0">
+            <div class="caption-center">
+
+                <div class="content-boxed left-40 right-40">
+                    <div class="content top-20 bottom-40">
+                        <h1 class="center-text uppercase ultrabold fa-3x">LOGIN</h1>
+                        <p class="center-text font-11 under-heading bottom-30 color-highlight">
+                            Let's get you logged in
+                        </p>
+                        <div class="input-style has-icon input-style-1 input-required">
+                            <i class="input-icon fa fa-user font-11"></i>
+                            <span>Email</span>
+                            <em>(required)</em>
+                            <input id="email" type="email" placeholder="Email">
+                        </div> 
+                        <div class="input-style has-icon input-style-1 input-required">
+                            <i class="input-icon fa fa-lock font-11"></i>
+                            <span>Password</span>
+                            <em>(required)</em>
+                            <input id="password" type="password" placeholder="Password">
+                        </div>          
+                        <div id="message"></div>
+                        <div class="clear"></div>
+                        <button id="loginBtn" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-30 bottom-0">LOGIN</button>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <!-- Page Content Class Ends Here-->
+
+    <% include ./inc/menu.ejs %>
+    <div class="menu-hider"></div>
+</div>
+
+<script type="text/javascript" src="/scripts/jquery.js"></script>
+<script type="text/javascript" src="/scripts/plugins.js"></script>
+<script type="text/javascript" src="/scripts/custom.js"></script>
+<script type="text/javascript" src="/scripts/common.js"></script>
+
+<script>
+    $('#loginBtn').click(function(){
+        $.ajax({
+            url:'http://localhost:3000/user/login',
+            type : 'POST',
+            data:{
+            email : $('#email').val(),
+            password : $('#password').val()
+            },
+            success:function(data){
+                if (data !== null){
+                    sessionStorage.setItem(TOKEN_KEY, data);
+                    window.location.href = "/";
+                }
+            },
+            error:function(data){
+                message("data not found!")
+            }
+        })
+    });
+</script>
+</body>
