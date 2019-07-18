@@ -20,11 +20,11 @@
                             data-src="images/placeholders/Account.png" alt="img">
                     </a>
                     <div class="store-slide-title">
-                        <strong>계정이름</strong>
-                        <em class="color-gray2-dark"><div id="emailText"></div></em>
+                        <strong>Account</strong>
+                        <em class="color-gray2-dark"><div id="emailText">email</div></em>
                     </div>
                     <div class="store-slide-button" style="text-align: right">
-                        <a href="#"><i class="fa color-highlight">정보수정하기</i><i
+                        <a href="#"><i class="fa color-highlight">Go change</i><i
                                 class="fa fa-arrow-right color-theme"></i></a>
                     </div>
                 </div>
@@ -36,11 +36,12 @@
                             data-src="images/placeholders/Credit.png" alt="img">
                     </a>
                     <div class="store-slide-title">
-                        <strong>계좌인증</strong>
-                        <em class="color-gray2-dark">계좌인증이 됐는지 안됐는지 보여주갓쏘</em>
+                        <strong>Account authentication</strong>
+                        <em class="color-gray2-dark">
+                            You need to authenticate your account before you can use the service.</em>
                     </div>
                     <div class="store-slide-button" style="text-align: right">
-                        <a id="authLink"><i class="fa color-highlight">계좌인증하기</i><i
+                        <a id="authLink"><i class="fa color-highlight">Go to authenticate</i><i
                                 class="fa fa-arrow-right color-theme"></i></a>
                     </div>
                 </div>
@@ -52,11 +53,27 @@
                             data-src="images/placeholders/Locker.png" alt="img">
                     </a>
                     <div class="store-slide-title">
-                        <strong>키퍼등록</strong>
-                        <em class="color-gray2-dark">키퍼등록을 하려면 계좌인증을 먼저 하세욧-!</em>
+                        <strong>Register Keeper</strong>
+                        <em class="color-gray2-dark">Register to provide locker.</em>
                     </div>
                     <div class="store-slide-button" style="text-align: right">
-                        <a href="#"><i class="fa color-highlight">키퍼등록하기</i><i
+                        <a href="#"><i class="fa color-highlight">Go to register</i><i
+                                class="fa fa-arrow-right color-theme"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="content-boxed content-boxed-full">
+                <div class="store-slide-2">
+                    <a href="#" class="store-slide-image">
+                        <img class="preload-image" src="images/empty.png"
+                            data-src="images/placeholders/Locker.png" alt="img">
+                    </a>
+                    <div class="store-slide-title">
+                        <strong>Keeper-only Management Page</strong>
+                        <em class="color-gray2-dark">Register to provide locker.</em>
+                    </div>
+                    <div class="store-slide-button" style="text-align: right">
+                        <a href="#"><i class="fa color-highlight">Go to register</i><i
                                 class="fa fa-arrow-right color-theme"></i></a>
                     </div>
                 </div>
@@ -73,7 +90,6 @@
 </body>
 <script>
     $('#authLink').click(function () {
-        //////////////여기여기여기 손을 좀 봐야쓰것소
         var client_id = "l7xx9a2f243e6f774376aaedf18a9f4e29e3";
         var redirect_uri = "http://localhost:3000/callback";
         var scope = "login inquiry transfer";
