@@ -41,7 +41,6 @@ router.post('/login', (req, res) => {
           //if (err) reject(err);
           console.log('로그인 성공', token)
           session.setItem("userId", results[0].id);
-          console.log(session.getItem("userId"));
           //resolve(token);
           res.json(token)
         }

@@ -8,13 +8,10 @@ console.log(username);
 
 var pagename = window.location.pathname;
 
+console.log("pagename: " + pagename);
 // FUNCTIONS =============================================================
 function getJwtToken() {
     return sessionStorage.getItem(TOKEN_KEY);
-}
-
-function throwJwtToken() {
-    return sessionStorage.getItem(TOKEN_KEY, NULL);
 }
 
 function message(msg) {
