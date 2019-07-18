@@ -22,7 +22,6 @@ app.use(bodyParser.urlencoded({
 
 app.set('jwt-secret', config.jwt_secret)
 
-app.use('/', require('./controller/auth'));
 app.use('/', require('./controller/map'));
 //app.use('/auth', require('./controller/auth'));
 app.use('/user', require('./controller/user'));
@@ -32,31 +31,7 @@ app.use('/account', require('./controller/account'));
 app.use('/mypage', require('./controller/mypage'));
 //app.use('/contract', require('./controller/contract.js'));
 
-<<
-<< << < HEAD
-//황세웅 추가부분 시작
-app.get('/', function (req, res) {
-  connection.query('SELECT * from user', function (err, results) {
-    if (err) throw err;
-    res.render('main', {
-      user: results
-    });
-  });
-});
 
-app.get('/getMarker', function (req, res) {
-  connection.query('select k.id, k.user_id, k.name, k.address, keeper_phone,k.insurance, k.location_lat,k.location_lon, u.email ' +
-    'from keeper k join user u ' +
-    'on k.user_id = u.id;',
-    function (err, results) {
-      if (err) throw err;
-      res.json(results);
-    });
-});
-//황세웅 추가부분 끝
-===
-=== =
-// CHAT =========================================
 app.get('/chat', (req, res) => {
   res.render("chat");
 });
@@ -68,8 +43,6 @@ io.on('connection', function (socket) {
   });
 });
 //================================================
->>>
->>> > 747 dfc47d2505509fbb5a3f2f83093a0f77264a0
 
 http.listen(port);
 console.log("Listening on port ", port);
