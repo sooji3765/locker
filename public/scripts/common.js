@@ -18,6 +18,12 @@ function message(msg) {
     return $('#message').text(msg);
 }
 
+$('#logout').click(function(){
+    alert("logout");
+    sessionStorage.setItem(TOKEN_KEY, '');
+    window.location.href='/user/login'
+});
+
 function init(){
     if (getJwtToken()) {
         $.ajax({
