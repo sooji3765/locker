@@ -70,16 +70,16 @@ $(document).ready(function(){
         //Enable this function to preload pages that are in the footer menu
         //Don't do this if your pages are very, very large.
         
-//        if($('#footer-menu').length){
-//            $('#footer-menu a').each(function(){
-//                var footerURL = $(this).attr('href');
-//                fetch(footerURL);
-//            });
-//            $('#footer-menu a').not('[data-menu]').on('click',function(){
-//                $('#footer-menu a').removeClass('active-nav');
-//                $(this).addClass('active-nav');
-//            });
-//        }
+       if($('#footer-menu').length){
+           $('#footer-menu a').each(function(){
+               var footerURL = $(this).attr('href');
+               fetch(footerURL);
+           });
+           $('#footer-menu a').not('[data-menu]').on('click',function(){
+               $('#footer-menu a').removeClass('active-nav');
+               $(this).addClass('active-nav');
+           });
+       }
         
         //Search Menu Functions
         function search_menu(){
