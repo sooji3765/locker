@@ -11,7 +11,7 @@ $(document).ready(function(){
         if ('scrollRestoration' in history) {history.scrollRestoration = 'manual';}
                         
 		//Disable Page Jump on Empty Links.
-		$('a').on('click', function(){var attrs = $(this).attr('href'); if(attrs === '#'){return false;}});
+		$('a').on('click', function(){var attrs = $(this).attr('href'); if(attrs === '#'){return true;}});
                 
         //Color Switcher
         $('[data-toggle-theme]').on('click',function(){

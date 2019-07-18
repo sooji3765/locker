@@ -91,21 +91,15 @@
     
 <body class="theme-light" data-background="none" data-highlight="blue2">
         
-<div id="page">
+<%# <div id="page"> %>
     
-    <div class="page-content">   
+    <%# <div class="page-content">    %>
     <!-- Google map-->
     
          <!-- 검색창--> 
         <div id="pac-container" class="search-box search-color bg-highlight shadow-tiny round-small top-60 bottom-10">
-            <%# <i class="fa fa-search"></i> %>
             <input id="pac-input" type="text" placeholder="Search here..">
         </div>
-
-        <%# <div id="pac-container">
-        <input id="pac-input" type="text"
-            placeholder="Enter a location">
-      </div> %>
 
         <div id="map"></div>
         
@@ -113,21 +107,13 @@
         <button id="whereami" type="button" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">내 위치</button>
         </div>
 
-        <ul>
+        <%# <ul>
             <li>위도:<span id="latitude"></span></li>
             <li>경도:<span id="longitude"></span></li>
-        </ul>
+        </ul> %>
         <!-- 내 위치 버튼-->
-        
-        <div class="content-boxed">
-            <div class="content">           
-                <div class="link-list link-list-1 link-list-long-border">
-                    <a href="#" data-menu="menu-demo-over-bottom"><i class="fa fa-arrow-up color-green2-dark"></i><span>Bottom Box</span><i class="fa fa-check color-green1-dark"></i></a>
-                </div>     
-            </div>
-        </div>
 
-    </div>
+    <%# </div> %>
 
 <script>
 // Initialize and add the map
@@ -141,7 +127,6 @@ function initMap() {
   console.log("지도를 찍었습니다.") 
   var myLatLng = {lat: myLat, lng: myLng};
 
-  // The map, centered at Seoul
   map = new google.maps.Map(document.getElementById('map'), {
     zoom: 20,
     center: myLatLng
@@ -150,7 +135,6 @@ function initMap() {
   myPosition = new google.maps.Marker({
     position: myLatLng,
     map: map,
-    title:"나여깄어!"
 });
 
     setMarkers(map);
