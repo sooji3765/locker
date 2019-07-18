@@ -14,7 +14,7 @@ function getJwtToken() {
 }
 
 function throwJwtToken() {
-    return sessionStorage.getItem(TOKEN_KEY,NULL);
+    return sessionStorage.getItem(TOKEN_KEY, NULL);
 }
 
 function message(msg) {

@@ -183,6 +183,7 @@
         <script type="text/javascript" src="/scripts/jquery.js"></script>
         <script type="text/javascript" src="/scripts/plugins.js"></script>
         <script type="text/javascript" src="/scripts/custom.js"></script>
+        <script type="text/javascript" src="/scripts/common.js"></script>
         <!-- datetime picker -->
         <script type="text/javascript" src="/scripts/jquery.datetimepicker.js"></script>
         <!-- big count num -->
@@ -193,7 +194,6 @@
                 var changCnt = cnt - 1;
                 if (cnt > 0) {
                     $("#cntVal").val(changCnt);
-
 
                     $("#priceBig").val(changCnt * 20);
                     $("#bigTotal").val(changCnt * 20);
@@ -319,8 +319,9 @@
             $("#reserBtn").click(function () {
 
                 console.log("button click");
+                console.log(userid);
                 var keeper_id = '<%=keeper_id %>';
-                var user_id = 3;
+                var user_id = userid;
                 var bigCnt = $("#cntVal").val();
                 var smCnt = $("#cntVal2").val();
                 var product_amount = "Big : " + bigCnt + " Small : " + smCnt;
