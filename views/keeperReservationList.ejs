@@ -62,8 +62,8 @@
                     if (data !== null){
                        console.log(data[0].id);
                         for(var i = 0; i < data.length ; i++){
-
-                            var text =  "<div id='reservation_info' data-height='250' class='caption caption-margins round-medium shadow-large'>"
+            
+                            $("#list").append("<div id='reservation_info' data-height='250' class='caption caption-margins round-medium shadow-large'>"
                             +"<input type='hidden' id='reservation_id' value="+data[i].id+">"
                             +"<div class='caption-top top-20 left-20'>"
                     +"<span class='bg-green1-dark color-white wrapped-text-small uppercase bold font-15'>Confirmation</span>"
@@ -79,10 +79,7 @@
                 +"</div>"
                 +"<div class='caption-overlay bg-black opacity-80'></div>"
                 +"<div class='caption-bg bg-21'></div>"
-                +"</div>";
-            
-                            //$("#list").append("<b>"+data[i].id+"</b><br>");
-                            $("#list").append(text);
+                +"</div>");
                         }
                     }
                 },

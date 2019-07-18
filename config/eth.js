@@ -81,6 +81,18 @@ exports.getMessage = function () {
     return LockerContract.getMessage();
 };
 
+exports.getEther = function (value) {
+	//return Web3.utils.fromWei(value, 'ether');
+	//var weiAmout = value/350000 * 1e18;
+	return web3.toWei(value/350000);
+
+/* 
+		const decimal = 18;
+    const amountToSendinDecimal = value * ( 10 ** decimal) ;
+		return this.toBigNumber(amountToSendinDecimal);
+ */		
+};
+
 //-------------------------------------
 //   (LockerContract : setMessage)
 //-------------------------------------
@@ -117,6 +129,8 @@ exports.unlockAccount = function (from, passphase, callback) {
 
 exports.sendTransaction = function(from, to, value, gas, callback) {
 
+	var value = parseInt(value)/35000;
+	console.log(">>>>>>>>>>>" + value);
 	if (to == null)
 		to =	web3.eth.defaultAccount;
 	//+++++++  STEP 4. SET Exercise ++++++++++++
@@ -124,6 +138,7 @@ exports.sendTransaction = function(from, to, value, gas, callback) {
 			to: to,
 			from: from,
 			value: web3.toWei(value,'ether'),
+			//value: value,
 			gas: gas}, function (err, hash) {
 			if (err) {
 					console.log(err);

@@ -275,7 +275,7 @@
                 var diff = date - now;
 
                 if (diff < 0) {
-                    alert("Please check the time!");
+                    console.log("Please check the time!");
                     $("#startDate").focus;
                 }
                 console.log(diff);
@@ -291,8 +291,8 @@
                 //var between = (endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60;
 
                 console.log(calDate(endDate, startDate));
-                if (endDate - now < 0) alert("Please check the time!");
-                if (diff < 0) alert("Please check the start time!");
+                if (endDate - now < 0) console.log("Please check the time!");
+                if (diff < 0) console.log("Please check the start time!");
 
                 totalChange();
             });
@@ -361,8 +361,10 @@
                         description: description
                     },
                     success: function (data) {
-                        if(data == '1'){ // 블록 체인
-                            location.href="/reservation/block";
+                        console.log(data.data);
+                        
+                        if(data.data == '1'){ // 블록 체인
+                            location.href="/contract/setmessage?total_price="+ total_price;
                         }else{ // 간편결제
                             console.log(data);
                             console.log(data.reservation_id);
