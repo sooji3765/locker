@@ -17,8 +17,9 @@ router.get('/message', function(req, res) {
 router.get('/setmessage', function(req, res) {
   var message = eth.getMessage();
   var total_price = req.query.total_price;
-
-  res.render('contract',{data:message, total_price:total_price});
+  var description = req.query.description;
+  
+  res.render('contract',{data:message, total_price:total_price, description:description});
 });
 
 router.post('/setmessage', function(req, res, next) {

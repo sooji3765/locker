@@ -34,6 +34,7 @@
               <input id="toAddr" type="text" placeholder="to address" value="0x2fc0cb1146DCbeb12F2aff4EC663F3C8845bf836">
               <span>ether</span>
               <input id="ether" type="number" placeholder="Ether" value="<%= total_price %>">
+              <input id="description" type="text" placeholder="description" value="<%= description %>">
             </div>
             <button id="transferBtn" type="button" class="right button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">Transfer</button>
           </div>
@@ -93,5 +94,15 @@
           }
       })
     });
+
+    var message = $('#description').val();
+    $.ajax({
+        url:'http://localhost:3000/contract/setmessage',
+        type : 'POST',
+        data:{msg : message},
+        success:function(data){
+          console.log("message");
+        }
+    })
   </script>
 </body>

@@ -51,7 +51,7 @@
                                 <strong class="color-theme font-16">Baggage</strong>
                                 <br> <%=list.product_amount%>
                                 <br> Reservatio State : Comfirm
-                                <br> Request Message : <%=list.description%>
+                                <br> Request Message : <span id="description"></span>
                             </p>
                             <div class="divider bottom-0"></div>
                             <div class="link-list link-list-1">
@@ -114,6 +114,14 @@
                 map: map
             });
         }
+        $.ajax({
+            url:'http://localhost:3000/contract/message',
+            type : 'GET',
+            success:function(data){
+                $('#description').html(data);
+                console.log(data);
+            }
+        })
     </script>
     <script
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBNfdF_uHYQT0Jn8czh4R10flxH8x3G95k&callback=initMap"
