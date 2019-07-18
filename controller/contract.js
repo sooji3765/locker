@@ -1,4 +1,4 @@
-/* var express = require('express');
+var express = require('express');
 var router = express.Router();
 var eth = require('../config/eth.js');
 
@@ -73,4 +73,3 @@ router.post('/sendTransaction', function(req, res) {
 });
 
 module.exports = router;
- */

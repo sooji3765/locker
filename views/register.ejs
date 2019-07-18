@@ -124,6 +124,20 @@
                                 id="checkInsu"></span>
                     </div>
                 </div>
+                <div class="content-boxed">
+                    <div class="content">        
+                        <h3 class="bolder">Request Message</h3>
+                        <p>
+                            write your message
+                        </p> 
+                        <div class="input-style input-style-2 input-required">
+                            <span class="input-style-1-inactive">Enter your Message</span>
+                            <em>(required)</em>
+                            <textarea id="description" placeholder=""></textarea>
+                        </div>
+                    </div>
+                </div>
+
 
                 <!-- total price -->
                 <div class="content-boxed">
@@ -330,6 +344,7 @@
                 var insurance_flag = $(this).is(":checked") == true ? 1 : 0;
                 var total_price = $("#totalPrice").val();
                 var pay_state = $("#pay_state").val();
+                var description = $("#description").val();
 
                 $.ajax({
                     url: '/reservation/check',
@@ -342,7 +357,8 @@
                         reservation_end_date: reservation_end_date,
                         total_price: total_price,
                         insurance_flag: insurance_flag,
-                        pay_state: pay_state
+                        pay_state: pay_state,
+                        description: description
                     },
                     success: function (data) {
                         if(data == '1'){ // 블록 체인

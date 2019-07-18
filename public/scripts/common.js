@@ -41,7 +41,7 @@ function init(){
                     console.log("userid = " + userid);
                     console.log("username = " + username);
                     console.log("email = " + email);
-
+                    //$('#username').html(username);
                 }
             }
         })
@@ -49,8 +49,10 @@ function init(){
         window.location.href = "/user/login";
     }
 
-    if (pagename != "/")
-    $('.header a:first').after('<a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>');
+    if (pagename != "/"){
+        $('.header a:first').after('<a href="#" class="back-button header-icon header-icon-1"><i class="fas fa-arrow-left"></i></a>');
+    }
+
 }
 
 init();
