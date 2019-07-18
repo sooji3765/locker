@@ -85,7 +85,72 @@
         font-weight: 500;
         padding: 6px 12px;
       }
+      
       /* 여기까지 검색창 스타일 */
+
+/* infobox 스타일 */
+#map-canvas {
+	/* margin: 0;
+	padding: 0; */
+	height: 400px;
+	max-width: none;
+}
+#map-canvas img {
+	max-width: none !important;
+}
+.gm-style-iw {
+	width: 350px !important;
+	left: 0px !important;
+	background-color: #fff;
+	box-shadow: rgba(178, 178, 178, 0.6);
+	border: solid rgba(72, 181, 233, 0.6);
+  border-radius: 2px 2px 10px 10px;
+  padding : 0 !important;
+}
+#iw-container {
+	margin-bottom: 10px;
+}
+#iw-container .iw-title {
+	font-family: 'Open Sans Condensed', sans-serif;
+	font-size: 22px;
+	font-weight: 400;
+	padding: 10px;
+	background-color: #48b5e9;
+	color: white;
+	/* margin: 0; */
+	border-radius: 2px 2px 0 0;
+}
+#iw-container .iw-content {
+	font-size: 13px;
+	line-height: 18px;
+	font-weight: 400;
+	margin-right: 1px;
+	padding: 15px 10px 1px 10px;
+	max-height: 300px;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.iw-content img {
+	float: right;
+	margin: 0 5px 5px 10px;	
+}
+.iw-subTitle {
+	font-size: 16px;
+	font-weight: 700;
+	padding: 5px 0;
+}
+/* .iw-bottom-gradient {
+	position: absolute;
+	width: 326px;
+	height: 25px;
+	bottom: 10px;
+	right: 18px;
+	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+	background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
+} */
+/* infobox 스타일 */
     </style>    
 </head>
     
@@ -111,7 +176,6 @@ var myPosition;
 // Initialize and add the map
 
 function initMap() {
-    
   // My location
   console.log("지도를 찍었습니다.") 
   var myLatLng = {lat: myLat, lng: myLng};
@@ -130,8 +194,6 @@ function initMap() {
 }
 
 function setMarkers(map) {
-
-  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   // var image = {
   //   url: '/images/luggage64.png',
   //   // This marker is 20 pixels wide by 32 pixels high.
@@ -163,15 +225,16 @@ $.ajax({
                     var contentString = '<div id="iw-container">' +
                     '<div class="iw-title">'+data[i].name+'</div>' +
                     '<div class="iw-content">' +
-                      '<div class="iw-subTitle">'+marker.position+'</div>' +
-                      '<img src="http://maps.marnoto.com/en/5wayscustomizeinfowindow/images/vistalegre.jpg"'+
+                      '<div class="iw-subTitle">정보</div>' +
+                      '<img src="/images/profile128.png"'+
                       '<br>Address. '+data[i].address+
                       '<br>Phone. '+data[i].keeper_phone+'<br>e-mail:'+data[i].email+'<br>www: www.myvistaalegre.com</p>'+
-                      '<a href="/keeper/store/'+data[i].id+'"><i class="Button"></i><span>결제</span></a>'+
+                      '<a href="/keeper/store/'+data[i].id+'" class="button button-m shadow-small button-round-small bg-blue2-dark">결제</a>' +
                     '</div>' +
-                    '<div class="iw-bottom-gradient"></div>' +
                   '</div>';                  
-              
+                  
+                    
+
                     let infowindow = new google.maps.InfoWindow({
                         content: contentString
                     });
