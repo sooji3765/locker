@@ -24,7 +24,7 @@
                         <em class="color-gray2-dark"><div id="emailText">email</div></em>
                     </div>
                     <div class="store-slide-button" style="text-align: right">
-                        <a href="#"><i class="fa color-highlight">Go change</i><i
+                        <a href="#"><i class="fa color-highlight">Go to change</i><i
                                 class="fa fa-arrow-right color-theme"></i></a>
                     </div>
                 </div>
@@ -57,7 +57,7 @@
                         <em class="color-gray2-dark">Register to provide locker.</em>
                     </div>
                     <div class="store-slide-button" style="text-align: right">
-                        <a href="#"><i class="fa color-highlight">Go to register</i><i
+                        <a href="keeper/register_keeper"><i class="fa color-highlight">Go to register</i><i
                                 class="fa fa-arrow-right color-theme"></i></a>
                     </div>
                 </div>
@@ -70,10 +70,10 @@
                     </a>
                     <div class="store-slide-title">
                         <strong>Keeper-only Management Page</strong>
-                        <em class="color-gray2-dark">Register to provide locker.</em>
+                        <em class="color-gray2-dark">Registered keeper list.</em>
                     </div>
                     <div class="store-slide-button" style="text-align: right">
-                        <a href="#"><i class="fa color-highlight">Go to register</i><i
+                        <a href="keeper/keeperList"><i class="fa color-highlight">Go to check.</i><i
                                 class="fa fa-arrow-right color-theme"></i></a>
                     </div>
                 </div>
@@ -96,7 +96,7 @@
 <script>
     $('#authLink').click(function () {
         var client_id = "l7xx9a2f243e6f774376aaedf18a9f4e29e3";
-        var redirect_uri = "http://localhost:3000/callback";
+        var redirect_uri = "http://localhost:3000/auth/callback";
         var scope = "login inquiry transfer";
         var response_type = "JSON";
         var qs =

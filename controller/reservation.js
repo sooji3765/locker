@@ -30,7 +30,6 @@ router.post('/check', (req, res) => {
 
     console.log(req.body);
 
-
     var sql = "INSERT INTO reservation_info(keeper_id,user_id,reservation_start_date,reservation_end_date" +
         " ,insurance_flag, product_amount,total_price,pay_state,description) " +
         "values(?,?,?,?,?,?,?,?,?)";
@@ -97,7 +96,13 @@ router.get('/info/:id', (req, res) => {
 });
 
 router.get('/list', (req, res) => {
-    var userId = session.getItem("userId");
+
+    res.render('reservation_list');
+});
+
+router.post('/list', (req, res) => {
+    var userId = req.body.userid;
+    console.log("post ===> list" + userId);
     var sql = "SELECT r.id, r.keeper_id, r.user_id, k.name, r.cancel_flag, r.reservation_start_date, r.reservation_end_date " +
         "FROM reservation_info r join keeper k " +
         "on r.keeper_id = k.id " +
@@ -105,11 +110,8 @@ router.get('/list', (req, res) => {
 
     connection.query(sql, [userId], function (err, results) {
         if (err) console.error(err);
-
         console.log(results);
-        res.render('reservation_list', {
-            list: results
-        });
+        res.json(results);
     });
 });
 

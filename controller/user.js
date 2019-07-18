@@ -117,14 +117,13 @@ router.post('/join', (req, res) => {
     phone
   } = req.body;
 
-  console.log("name check" + name);
-
   var query = "INSERT INTO user (name, email, password,phone) VALUES (?, ?, ?,?)";
 
   connection.query(query, [name, email, password, phone], function (error, results, fields) {
     if (error) {
       throw error;
     } else {
+      console.log("result: " + results);
       res.json(1);
     }
   });
