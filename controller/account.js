@@ -111,7 +111,7 @@ router.post('/transfer/withdraw', (req, res) => {
         var accessToken = results[0].accessToken;
         var fintech_use_num = results[0].fintech_use_num;
 
-        console.log("출금때디 :" + accessToken);
+        console.log("출금 중 :" + accessToken);
         var option = {
             method: "POST",
             url: url,
