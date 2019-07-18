@@ -126,4 +126,9 @@ router.post('/reg_keep_ok', (req, res) => {
     });
 });
 
+
+router.get('/balance', function (req, res) {
+    res.render('keeperBalance');
+});
+
 module.exports = router;

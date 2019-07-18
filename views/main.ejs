@@ -90,7 +90,6 @@
 </head>
     
 <body class="theme-light" data-background="none" data-highlight="blue2">
-        
          <!-- 검색창--> 
         <div id="pac-container" class="search-box search-color bg-highlight shadow-tiny round-small top-60 bottom-10">
             <input id="pac-input" type="text" placeholder="Search here..">
@@ -99,9 +98,10 @@
         <!-- Google map-->
         <div id="map"></div>
         
+        <div style = "position: relative left: 30px border: 3px solid #73AD21">
         <!-- 내 위치 버튼-->
-        <button id="whereami" type="button" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">내 위치</button>
-        </div>
+        <button style = "z-index 100" id="whereami" type="button" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-0 bottom-0">내 위치</button>
+        </div>        
 
 <script>
 
@@ -126,9 +126,8 @@ function initMap() {
   myPosition = new google.maps.Marker({
     position: myLatLng,
     map: map,
-    icon: '/images/myMarker.png'
-});
-
+    icon: '/images/myMarker.png' 
+  });
     setMarkers(map);
 }
 
@@ -148,24 +147,7 @@ function setMarkers(map) {
     coords: [1, 1, 1, 20, 18, 20, 18, 1],
     type: 'poly'
   };
-
-// var image = new google.maps.MarkerImage("/images/docker_marker.png", null, null, null, new google.maps.Size(12,20));
- 
-//  var iconBase =
-//             'https://developers.google.com/maps/documentation/javascript/examples/full/images/';
-
-        // var image = {
-        //   parking: {
-        //     icon: iconBase + 'parking_lot_maps.png'
-        //   },
-        //   library: {
-        //     icon: iconBase + 'library_maps.png'
-        //   },
-        //   info: {
-        //     icon: iconBase + 'info-i_maps.png'
-        //   }
-        // };
-
+  
 $.ajax({
             url:'http://localhost:3000/getMarker',
             type : 'GET',

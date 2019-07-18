@@ -275,7 +275,7 @@
                 var diff = date - now;
 
                 if (diff < 0) {
-                    alert("Please check the time!");
+                    console.log("Please check the time!");
                     $("#startDate").focus;
                 }
                 console.log(diff);
@@ -291,8 +291,8 @@
                 //var between = (endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60;
 
                 console.log(calDate(endDate, startDate));
-                if (endDate - now < 0) alert("Please check the time!");
-                if (diff < 0) alert("Please check the start time!");
+                if (endDate - now < 0) console.log("Please check the time!");
+                if (diff < 0) console.log("Please check the start time!");
 
                 totalChange();
             });
