@@ -90,7 +90,6 @@
 </head>
     
 <body class="theme-light" data-background="none" data-highlight="blue2">
-        
          <!-- 검색창--> 
         <div id="pac-container" class="search-box search-color bg-highlight shadow-tiny round-small top-60 bottom-10">
             <input id="pac-input" type="text" placeholder="Search here..">
@@ -98,10 +97,9 @@
 
         <!-- Google map-->
         <div id="map"></div>
-        
-        <!-- 내 위치 버튼-->
-        <button id="whereami" type="button" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">내 위치</button>
-        </div>
+
+        <button id="whereami" type="button" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-0 bottom-0">내 위치</button>
+        </div>        
 
 <script>
 
@@ -126,46 +124,28 @@ function initMap() {
   myPosition = new google.maps.Marker({
     position: myLatLng,
     map: map,
-    icon: '/images/myMarker.png'
-});
-
+    icon: '/images/myMarker.png' 
+  });
     setMarkers(map);
 }
 
 function setMarkers(map) {
 
-  var image = {
-    url: '/images/luggage64.png',
-    // This marker is 20 pixels wide by 32 pixels high.
-    size: new google.maps.Size(64, 64),
-    // The origin for this image is (0, 0).
-    origin: new google.maps.Point(0, 0),
-    // The anchor for this image is the base of the flagpole at (0, 32).
-    anchor: new google.maps.Point(0, 32)
-  };
+  // var image = {
+  //   url: '/images/luggage64.png',
+  //   // This marker is 20 pixels wide by 32 pixels high.
+  //   size: new google.maps.Size(64, 64),
+  //   // The origin for this image is (0, 0).
+  //   origin: new google.maps.Point(32, 32),
+  //   // The anchor for this image is the base of the flagpole at (0, 32).
+  //   anchor: new google.maps.Point(0, 0)
+  // };
 
-  var shape = {
-    coords: [1, 1, 1, 20, 18, 20, 18, 1],
-    type: 'poly'
-  };
-
-// var image = new google.maps.MarkerImage("/images/docker_marker.png", null, null, null, new google.maps.Size(12,20));
- 
-//  var iconBase =
-//             'https://developers.google.com/maps/documentation/javascript/examples/full/images/';
-
-        // var image = {
-        //   parking: {
-        //     icon: iconBase + 'parking_lot_maps.png'
-        //   },
-        //   library: {
-        //     icon: iconBase + 'library_maps.png'
-        //   },
-        //   info: {
-        //     icon: iconBase + 'info-i_maps.png'
-        //   }
-        // };
-
+  // var shape = {
+  //   coords: [1, 1, 1, 20, 18, 20, 18, 1],
+  //   type: 'poly'
+  // };
+  
 $.ajax({
             url:'http://localhost:3000/getMarker',
             type : 'GET',
@@ -174,8 +154,8 @@ $.ajax({
                     let marker = new google.maps.Marker({
                         position: {lat: parseFloat(data[i].location_lat), lng: parseFloat(data[i].location_lon)},
                         map: map,
-                        icon: image,
-                        shape :shape,
+                        icon: '/images/luggage64.png',
+                        //shape :shape,
                         contents : data[i].id
                     });
                     
