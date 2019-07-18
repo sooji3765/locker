@@ -36,8 +36,7 @@
             <div class="caption-bg bg-18"></div>
         </div> 
         
-        
-
+    
         <div class="divider divider-margins"></div>
         
       
@@ -48,7 +47,9 @@
                    if you have it, Check the your account.
                    Or You don't have it, click this button.
                 </p>
-                <a id="authBtn" class="button button-m shadow-small button-circle bg-green1-dark">Make a Account</a>
+                
+                <a id="dbBtn" class="button button-m shadow-small button-circle bg-green1-dark">check DB</a>
+                <a id="authBtn" style="display:none" class="button button-m shadow-small button-circle bg-green1-dark">Make a Account</a>
                 <span id="result"></span>     
             </div>     
         </div>
@@ -78,22 +79,17 @@
         <a id="payBtn" class="button button-margins button-m button-full button-round-small shadow-medium bg-highlight bottom-30">Pay Now</a>
         
     </div>
-    <!-- Page Content Class Ends Here-->
-
-    <!--Menu Settings-->
-    
-    <!--Menu Settings Highlights-->
-    
-    <!-- Menu Settings Backgrounds-->
     
     <div class="menu-hider"></div>
 </div>
-<script type="text/javascript" src="/scripts/jquery.js"></script>
+<%# <script type="text/javascript" src="/scripts/jquery.js"></script> %>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="/scripts/plugins.js"></script>
 <script type="text/javascript" src="/scripts/custom.js"></script>
 <script type="text/javascript" src="/scripts/common.js"></script>
 
 <script>
+ $(document).ready(function(){ 
     $('#authBtn').click(function(){
     console.log("clcik");
     // 변경해주세요. 
@@ -122,40 +118,68 @@
     });
 
 
-    $("#payBtn").click(function(){
-            var accessToken = $("#accessToken").val();
-            var refreshToken =$("#refreshToken").val();
-            var userseqnum = $("#userseqnum").val();
-            var fintech_use_num = $("#fintech_use_num").val();
-
-            $.ajax({
-                url:'/account/transfer/withdraw',
-                type : 'POST',
-                data: {
-                    accessToken :accessToken,
-                    refreshToken : refreshToken,
-                    userseqnum : userseqnum,
-                    fintech_use_num : fintech_use_num
-                },
-                success:function(data){
-                alert(data);
-                location.href = "/reservation/info/"+<%=reservation_id%>  
-                }
-            });
+    $('#payBtn').click(function(){
+        console.log('pay btn');
+        $.ajax({
+            url:'/account/transfer/withdraw',
+            type : 'POST',
+            data: {
+                user_id: userid
+            },
+            success:function(data){
+            alert(data);
+            location.href = "/reservation/info/"+<%=reservation_id%>  
+            }
         });
+    });
 
     // payBtn click
 
+   
+        $("#dbBtn").click(function(){
+        var result = document.getElementById('result');
+            $.ajax({
+                url:'/account/getdb',
+                type : 'POST',
+                async: true,
+                data :{
+                    userid:userid
+                },
+                success:function(data){
+                    //alert(data.accessToken);
+                    if(data.accessToken!=null){
+                        setResult();
+                        $('#authBtn').show();  
+                    }  
+                    else{ 
+                        $('#result').html("dont have it");     
+                        $('#authBtn').show();
+                    }
+                    //alert(data.accessToken);
+                }
+
+            });
+            return false;
+        });
+    });
+
+    function setResult(){
+        var result = document.getElementById('result');
+        result.innerText = '존재함';
+    }
+
     $("#getBtn").click(function(){
-        console.log('click');
+        console.log('getBtn click');
         var accessToken = $("#accessToken").val();
         var userseqnum = $("#userseqnum").val();
+        var user_id = userid;
         $.ajax({
             url:'/account/search',
             type : 'POST',
             data: {
                 accessToken :accessToken,
-                userseqnum : userseqnum
+                userseqnum : userseqnum,
+                user_id: user_id
             },
             success:function(data){
                 $("#fintech_use_num").val(data);
