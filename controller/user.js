@@ -110,19 +110,18 @@ router.get('/signup', (req, res) => {
 });
 
 router.post('/join', (req, res) => {
-
   const {
     name,
     email,
     password,
-    accessToken,
-    refreshToken,
-    userseqnum
+    phone
   } = req.body;
 
-  var query = "INSERT INTO fintech.user (name, email, password, access_token, refresh_token, finusernum) VALUES (?, ?, ?, ?, ?, ?);";
+  console.log("name check" + name);
 
-  connection.query(query, [name, email, password, accessToken, refreshToken, userseqnum], function (error, results, fields) {
+  var query = "INSERT INTO user (name, email, password,phone) VALUES (?, ?, ?,?)";
+
+  connection.query(query, [name, email, password, phone], function (error, results, fields) {
     if (error) {
       throw error;
     } else {

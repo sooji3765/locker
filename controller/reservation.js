@@ -3,7 +3,7 @@ var jwt = require('jsonwebtoken');
 var session = require('sessionstorage');
 
 var connection = require('../config/database');
-
+var config = require('../config/config');
 
 router.get('/register/:id', (req, res) => {
     const keeper_id = parseInt(req.params.id);
@@ -72,7 +72,8 @@ router.post('/check', (req, res) => {
 router.get('/pay/:id', (req, res) => {
     const reservation_id = req.params.id;
     res.render('account', {
-        reservation_id: reservation_id
+        reservation_id: reservation_id,
+        client_id: config.client_id
     });
 });
 

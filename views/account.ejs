@@ -91,8 +91,10 @@
  $(document).ready(function(){ 
     $('#authBtn').click(function(){
     console.log("clcik");
+    
     // 변경해주세요. 
       var client_id = "l7xx95f2ecb17e274e1486240d91f16cadbe";
+      console.log(client_id);
       var redirect_uri = "http://localhost:3000/auth/callback";
       var scope = "login inquiry transfer";
       var response_type = "JSON";
