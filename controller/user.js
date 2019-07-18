@@ -4,8 +4,10 @@ const mysql = require('mysql');
 
 const auth = require('./authcheck');
 var connection = require('../config/database');
+var session = require('sessionstorage');
 
-router.get('/myPage', (req,res) => {
+
+router.get('/myPage', (req, res) => {
   res.render('myPage');
 });
 
@@ -38,6 +40,8 @@ router.post('/login', (req, res) => {
         (err, token) => {
           //if (err) reject(err);
           console.log('로그인 성공', token)
+          session.setItem("userId", results[0].id);
+          console.log(session.getItem("userId"));
           //resolve(token);
           res.json(token)
         }
