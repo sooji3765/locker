@@ -96,13 +96,12 @@ router.get('/info/:id', (req, res) => {
 });
 
 router.get('/list', (req, res) => {
-    console.log("call");
+
     res.render('reservation_list');
 });
 
 router.post('/list', (req, res) => {
     var userId = req.body.userid;
-
     console.log("post ===> list" + userId);
     var sql = "SELECT r.id, r.keeper_id, r.user_id, k.name, r.cancel_flag, r.reservation_start_date, r.reservation_end_date " +
         "FROM reservation_info r join keeper k " +
