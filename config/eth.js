@@ -1,4 +1,4 @@
-/* //------------------------
+//------------------------
 // Web3 Connect
 //------------------------
 
@@ -133,4 +133,4 @@ exports.sendTransaction = function(from, to, value, gas, callback) {
 					return callback(null, hash);
 			}
 	});
-}; */
+};
