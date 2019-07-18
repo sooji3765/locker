@@ -70,13 +70,7 @@ router.get('/register_keeper', function (req, res) {
     res.render('register_keeper');
 });
 
-router.get('/keeperList', function (req, res) {
-    res.render('keeperList');
-});
 
-router.get('/keeperManagement', function (req, res) {
-    res.render('keeperManagement');
-});
 
 router.get('/list', function (req, res) {
     res.render('keeperReservationList');
