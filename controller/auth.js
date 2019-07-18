@@ -14,7 +14,7 @@ router.get('/callback', (req, res) => {
     var getTokenUrl = "https://testapi.open-platform.or.kr/oauth/2.0/token";
 
     // 수정 필요 : userid를 commons.js 에서 가져오는 방법
-    var userId = session.getItem("userId");
+    var user_id = session.getItem("userId");
 
     console.log("userid=========>" + userId);
     var option = {

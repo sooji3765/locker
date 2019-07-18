@@ -82,8 +82,7 @@
     
     <div class="menu-hider"></div>
 </div>
-<%# <script type="text/javascript" src="/scripts/jquery.js"></script> %>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/scripts/jquery.js"></script>
 <script type="text/javascript" src="/scripts/plugins.js"></script>
 <script type="text/javascript" src="/scripts/custom.js"></script>
 <script type="text/javascript" src="/scripts/common.js"></script>
@@ -94,7 +93,7 @@
     console.log("clcik");
     // 변경해주세요. 
       var client_id = "l7xx95f2ecb17e274e1486240d91f16cadbe";
-      var redirect_uri = "http://localhost:3000/callback";
+      var redirect_uri = "http://localhost:3000/auth/callback";
       var scope = "login inquiry transfer";
       var response_type = "JSON";
       var qs = 
@@ -134,8 +133,6 @@
     });
 
     // payBtn click
-
-   
         $("#dbBtn").click(function(){
         var result = document.getElementById('result');
             $.ajax({
@@ -149,15 +146,11 @@
                     //alert(data.accessToken);
                     if(data.accessToken!=null){
                         setResult();
-                        $('#authBtn').show();  
-                    }  
-                    else{ 
+                    } else{ 
                         $('#result').html("dont have it");     
                         $('#authBtn').show();
                     }
-                    //alert(data.accessToken);
                 }
-
             });
             return false;
         });
