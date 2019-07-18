@@ -3,7 +3,7 @@
         <div id="accessToken"><%=data.access_token%></div>
         <div id="refreshToken"><%=data.refresh_token%></div>
         <div id="usenum"><%=data.user_seq_no%></div>
-        <input type="hidden" id="userid" value="">
+       
     </body>
     <script type="text/javascript" src="/scripts/common.js"></script>
     <script>
@@ -13,8 +13,7 @@
         document.getElementById("refreshToken").textContent;
         opener.document.getElementById("userseqnum").value = 
         document.getElementById("usenum").textContent;
-        opener.document.getElementById("userid").value = 
-        document.getElementById("userid").textContent;
+      
     </script>
    
 </html> 

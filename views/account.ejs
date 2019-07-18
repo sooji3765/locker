@@ -48,8 +48,8 @@
                    Or You don't have it, click this button.
                 </p>
                 
-                <a id="dbBtn" class="button button-m shadow-small button-circle bg-green1-dark">check DB</a>
-                <a id="authBtn" style="display:none" class="button button-m shadow-small button-circle bg-green1-dark">Make a Account</a>
+                <a id="dbBtn" class="button button-m shadow-large button-full button-circle bg-green1-dark">check DB</a>
+                <a id="authBtn" style="display:none" class="button button-m button-full shadow-small button-circle bg-green1-dark">Make a Account</a>
                 <span id="result"></span>     
             </div>     
         </div>
@@ -114,6 +114,7 @@
             tmpwindow.location = data.location;//추가
         }
       });
+      return false;
     });
 
 
@@ -144,11 +145,11 @@
                 },
                 success:function(data){
                     //alert(data.accessToken);
-                    if(data.accessToken!=null){
-                        setResult();
-                    } else{ 
-                        $('#result').html("dont have it");     
+                    if(data.fintech_use_num==null||data.fintech_use_num=='') { 
+                        setResult("Dont have it");    
                         $('#authBtn').show();
+                    } else{
+                        setResult("you have it"); 
                     }
                 }
             });
@@ -156,9 +157,9 @@
         });
     });
 
-    function setResult(){
+    function setResult(texts){
         var result = document.getElementById('result');
-        result.innerText = '존재함';
+        result.innerText = texts;
     }
 
     $("#getBtn").click(function(){
@@ -178,6 +179,7 @@
                 $("#fintech_use_num").val(data);
             }
         });
+        return false;
     });
 </script>
 </body>
