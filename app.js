@@ -1,8 +1,10 @@
 var express = require("express");
 var bodyParser = require('body-parser');
+var morgan = require('morgan');
 const config = require('./config/config');
 
 app = express();
+
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
 
@@ -11,14 +13,10 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
-
+app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
 
 app.set('jwt-secret', config.jwt_secret)
 

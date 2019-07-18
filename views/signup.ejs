@@ -47,7 +47,7 @@
                   <i class="input-icon fa fa-phone font-11"></i>
                   <span>Phone</span>
                   <em>(required)</em>
-                  <input type="text" id="phone" placeholder="Choose a Phone">
+                  <input type="text" id="phone" placeholder="Choose a Phone" value="010-2233-1124">
               </div> 
               
 
@@ -89,7 +89,7 @@
             phone : phone
         },
         success:function(data){
-            alert(data);
+            console.log(data);
             location.href='/user/login';
         }
       })

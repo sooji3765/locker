@@ -11,7 +11,14 @@ $(document).ready(function(){
         if ('scrollRestoration' in history) {history.scrollRestoration = 'manual';}
                         
 		//Disable Page Jump on Empty Links.
-		$('a').on('click', function(){var attrs = $(this).attr('href'); if(attrs === '#'){return true;}});
+        $('a').on('click', function(){
+            var attrs = $(this).attr('href'); 
+            console.log('attrs >>>>> ' + attrs);
+            if(attrs === '#'){
+                console.log("#####")
+                return true;
+            }
+        });
                 
         //Color Switcher
         $('[data-toggle-theme]').on('click',function(){
@@ -1357,41 +1364,41 @@ $(document).ready(function(){
 	setTimeout(init_template, 0);
            
     //To Remove AJAX Remove This Code 
-    $(function(){
-		'use strict';
-		var options = {
-			prefetch: true,
-			prefetchOn: 'mouseover',
-			cacheLength: 100,
-			scroll: true, 
-			blacklist: '.default-link',
-			forms: 'contactForm',
-			onStart: {
-				duration:210, // Duration of our animation
-				render: function ($container) {
-				$container.addClass('is-exiting');// Add your CSS animation reversing class
-                    $('.menu, .menu-hider').removeClass('menu-active');
-					$('.loader-main').removeClass('loader-inactive');
-					return false;
-				}
-			},
-			onReady: {
-				duration: 50,
-				render: function ($container, $newContent) {
-					$container.removeClass('is-exiting');// Remove your CSS animation reversing class
-					$container.html($newContent);// Inject the new content
-                    setTimeout(init_template, 0)//Timeout required to properly initiate all JS Functions. 
-					$('.loader-main').removeClass('loader-inactive');		
-				}
-			},
-			onAfter: function($container, $newContent) {
-				setTimeout(function(){
-				    $('.loader-main').addClass('loader-inactive');	
-				},145);
-			}
-      	};
-      var smoothState = $('#page').smoothState(options).data('smoothState');
-    });
+    // $(function(){
+	// 	'use strict';
+	// 	var options = {
+	// 		prefetch: true,
+	// 		prefetchOn: 'mouseover',
+	// 		cacheLength: 100,
+	// 		scroll: true, 
+	// 		blacklist: '.default-link',
+	// 		forms: 'contactForm',
+	// 		onStart: {
+	// 			duration:210, // Duration of our animation
+	// 			render: function ($container) {
+	// 			$container.addClass('is-exiting');// Add your CSS animation reversing class
+    //                 $('.menu, .menu-hider').removeClass('menu-active');
+	// 				$('.loader-main').removeClass('loader-inactive');
+	// 				return false;
+	// 			}
+	// 		},
+	// 		onReady: {
+	// 			duration: 50,
+	// 			render: function ($container, $newContent) {
+	// 				$container.removeClass('is-exiting');// Remove your CSS animation reversing class
+	// 				$container.html($newContent);// Inject the new content
+    //                 setTimeout(init_template, 0)//Timeout required to properly initiate all JS Functions. 
+	// 				$('.loader-main').removeClass('loader-inactive');		
+	// 			}
+	// 		},
+	// 		onAfter: function($container, $newContent) {
+	// 			setTimeout(function(){
+	// 			    $('.loader-main').addClass('loader-inactive');	
+	// 			},145);
+	// 		}
+    //   	};
+    //   var smoothState = $('#page').smoothState(options).data('smoothState');
+    // });
     //Remove untill here to remove AJAX.
     
 }); 

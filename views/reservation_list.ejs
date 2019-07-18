@@ -86,19 +86,15 @@
     <script type="text/javascript" src="../scripts/jquery.js"></script>
     <script type="text/javascript" src="../scripts/plugins.js"></script>
     <script type="text/javascript" src="../scripts/custom.js"></script>
+    <script type="text/javascript" src="/scripts/common.js"></script>
 
+</body>
     <script>
+    console.log("reservationList is loaded")
         $(".caption").click(function (event) {
             var parent = event.target.parentNode;
             console.log(parent);
             var reservation_id = parent.querySelector("#reservation_id").value;
             location.href = '/reservation/info/' + reservation_id;
         });
-
-
-
-        // $("#cancelBtn").click(function () {
-
-        // });
     </script>
-</body>
