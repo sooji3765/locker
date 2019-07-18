@@ -1,6 +1,6 @@
 var express = require("express");
 var bodyParser = require('body-parser');
-var morgan = require('morgan');
+//var morgan = require('morgan');
 const config = require('./config/config');
 
 app = express();
@@ -13,7 +13,7 @@ app.use(express.json());
 app.use(express.urlencoded({
   extended: false
 }));
-app.use(morgan('dev'));
+//app.use(morgan('dev'));
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
