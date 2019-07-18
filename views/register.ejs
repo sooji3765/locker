@@ -364,7 +364,7 @@
                         console.log(data.data);
                         
                         if(data.data == '1'){ // 블록 체인
-                            location.href="/contract/setmessage?total_price="+ total_price;
+                            location.href="/contract/setmessage?total_price="+ total_price + "&description=" + description;
                         }else{ // 간편결제
                             console.log(data);
                             console.log(data.reservation_id);
