@@ -91,29 +91,17 @@
     
 <body class="theme-light" data-background="none" data-highlight="blue2">
         
-<%# <div id="page"> %>
-    
-    <%# <div class="page-content">    %>
-    <!-- Google map-->
-    
          <!-- 검색창--> 
         <div id="pac-container" class="search-box search-color bg-highlight shadow-tiny round-small top-60 bottom-10">
             <input id="pac-input" type="text" placeholder="Search here..">
         </div>
 
+        <!-- Google map-->
         <div id="map"></div>
         
         <!-- 내 위치 버튼-->
         <button id="whereami" type="button" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">내 위치</button>
         </div>
-
-        <%# <ul>
-            <li>위도:<span id="latitude"></span></li>
-            <li>경도:<span id="longitude"></span></li>
-        </ul> %>
-        <!-- 내 위치 버튼-->
-
-    <%# </div> %>
 
 <script>
 
@@ -138,18 +126,18 @@ function initMap() {
   myPosition = new google.maps.Marker({
     position: myLatLng,
     map: map,
+    icon: '/images/myMarker.png'
 });
 
     setMarkers(map);
 }
 
-
 function setMarkers(map) {
 
   var image = {
-    url: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+    url: '/images/luggage64.png',
     // This marker is 20 pixels wide by 32 pixels high.
-    size: new google.maps.Size(20, 32),
+    size: new google.maps.Size(64, 64),
     // The origin for this image is (0, 0).
     origin: new google.maps.Point(0, 0),
     // The anchor for this image is the base of the flagpole at (0, 32).
@@ -161,19 +149,34 @@ function setMarkers(map) {
     type: 'poly'
   };
 
+// var image = new google.maps.MarkerImage("/images/docker_marker.png", null, null, null, new google.maps.Size(12,20));
+ 
+//  var iconBase =
+//             'https://developers.google.com/maps/documentation/javascript/examples/full/images/';
+
+        // var image = {
+        //   parking: {
+        //     icon: iconBase + 'parking_lot_maps.png'
+        //   },
+        //   library: {
+        //     icon: iconBase + 'library_maps.png'
+        //   },
+        //   info: {
+        //     icon: iconBase + 'info-i_maps.png'
+        //   }
+        // };
+
 $.ajax({
             url:'http://localhost:3000/getMarker',
             type : 'GET',
             success:function(data){
-                console.log(data);
                 for (var i = 0; i < data.length; i++) {
                     let marker = new google.maps.Marker({
                         position: {lat: parseFloat(data[i].location_lat), lng: parseFloat(data[i].location_lon)},
                         map: map,
                         icon: image,
-                        shape: shape,
+                        shape :shape,
                         contents : data[i].id
-                        //zIndex:
                     });
                     
                     var contentString = '<div id="iw-container">' +
@@ -193,7 +196,6 @@ $.ajax({
                     });
 
                      google.maps.event.addListener(marker, 'click', function() {
-                       console.log(marker.contents);
                        infowindow.open(map, marker);
                      });
 
@@ -216,7 +218,6 @@ $.ajax({
                 $('#longitude').html(pos.coords.longitude); // 경도
                 myLat = pos.coords.latitude;
                 myLng = pos.coords.longitude;
-                console.log(myLat,myLng);
                 initialLocation = new google.maps.LatLng(myLat, myLng);
                 map.panTo(initialLocation);
                 myPosition.setPosition(initialLocation);
@@ -235,7 +236,7 @@ $.ajax({
 </script>
 
 <script type="text/javascript" src="scripts/jquery.js"></script>
-<%# <script type="text/javascript" src="scripts/plugins.js"></script> %>
+<script type="text/javascript" src="scripts/plugins.js"></script>
 <script type="text/javascript" src="scripts/custom.js"></script>
 <script type="text/javascript" src="scripts/common.js"></script>
 <script type="text/javascript" src="scripts/autoSearch.js"></script>
