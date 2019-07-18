@@ -3,6 +3,9 @@ var TOKEN_KEY = "jwtToken";
 var userid = "";
 var username = "";
 var email = "";
+
+console.log(username);
+
 var pagename = window.location.pathname;
 
 console.log("pagename: " + pagename);
@@ -38,6 +41,7 @@ function init(){
                     console.log("userid = " + userid);
                     console.log("username = " + username);
                     console.log("email = " + email);
+
                 }
             }
         })
