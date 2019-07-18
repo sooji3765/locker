@@ -26,8 +26,6 @@ autocomplete.addListener('place_changed', function() {
     searchMarker.setVisible(false);
     var place = autocomplete.getPlace();
     if (!place.geometry) {
-    // User entered the name of a Place that was not suggested and
-    // pressed the Enter key, or the Place Details request failed.
          window.alert("No details available for input: '" + place.name + "'");
         return;
     }
@@ -52,28 +50,28 @@ autocomplete.addListener('place_changed', function() {
             ].join(' ');
         }
 
-        searchInfowindowContent.children['place-icon'].src = place.icon;
-        searchInfowindowContent.children['place-name'].textContent = place.name;
-        searchInfowindowContent.children['place-address'].textContent = address;
-        searchInfowindow.open(map, searchMarker);
+        //searchInfowindowContent.children['place-icon'].src = place.icon;
+        // searchInfowindowContent.children['place-name'].textContent = place.name;
+        // searchInfowindowContent.children['place-address'].textContent = address;
+        // searchInfowindow.open(map, searchMarker);
         });
 
         // Sets a listener on a radio button to change the filter type on Places
         // Autocomplete.
-        function setupClickListener(id, types) {
-          var radioButton = document.getElementById(id);
-              radioButton.addEventListener('click', function() {
-              autocomplete.setTypes(types);
-          });
-        }
+        // function setupClickListener(id, types) {
+        //   var radioButton = document.getElementById(id);
+        //       radioButton.addEventListener('click', function() {
+        //       autocomplete.setTypes(types);
+        //   });
+        // }
 
-        setupClickListener('changetype-all', []);
-        setupClickListener('changetype-address', ['address']);
-        setupClickListener('changetype-establishment', ['establishment']);
-        setupClickListener('changetype-geocode', ['geocode']);
+        // setupClickListener('changetype-all', []);
+        // setupClickListener('changetype-address', ['address']);
+        // setupClickListener('changetype-establishment', ['establishment']);
+        // setupClickListener('changetype-geocode', ['geocode']);
 
-        document.getElementById('use-strict-bounds')
-            .addEventListener('click', function() {
-              console.log('Checkbox clicked! New state=' + this.checked);
-              autocomplete.setOptions({strictBounds: this.checked});
-        });
+        // document.getElementById('use-strict-bounds')
+        //     .addEventListener('click', function() {
+        //       console.log('Checkbox clicked! New state=' + this.checked);
+        //       autocomplete.setOptions({strictBounds: this.checked});
+        // });
