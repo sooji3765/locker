@@ -44,7 +44,7 @@ router.get('/callback', (req, res) => {
             var refreshToken = accessRequestResult.refresh_token;
             var finusernum = accessRequestResult.user_seq_no;
             var sql = "UPDATE user SET accessToken =? , refreshToken=?, finusernum=? WHERE id=?"
-            connection.query(sql, [accessToken, refreshToken, finusernum, user_id],
+            connection.query(sql, [accessToken, refreshToken, finusernum, userId],
                 function (err, result) {
                     res.render('resultChild', {
                         data: accessRequestResult
