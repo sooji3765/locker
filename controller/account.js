@@ -43,61 +43,89 @@ router.post('/getdb', (req, res) => {
     });
 });
 
-router.get('/balance', (req, res) => {
+router.post('/balance', (req, res) => {
 
-    fintech_use_num = "199005200057726135180939";
-    accessToken = "9dc3e1d3-7c9f-4311-bcd5-bdde471aef18";
-    tran_dtime = "20160310101921";
-    var url = "https://testapi.open-platform.or.kr/account/balance?fintech_use_num=" + fintech_use_num + "&tran_dtime=" + tran_dtime;
+    var userid = req.body.userid;
+    console.log(userid);
 
-    var option = {
-        method: "GET",
-        url: url,
-        headers: {
-            Authorization: "Bearer " + accessToken,
-        },
-    };
-    request(option, (err, response, body) => {
-        if (err) {
-            console.error(err);
-            throw err;
-        } else {
-            res.json(JSON.parse(body));
-        }
+    connection.query("SELECT * FROM user WHERE id = ?", [userid], function (error, results) {
+
+        if (error) console.error(error);
+        console.log(results);
+        console.log(results[0].fintech_use_num);
+        console.log(results[0].accessToken);
+        fintech_use_num = results[0].fintech_use_num;
+        accessToken = results[0].accessToken;
+        tran_dtime = "20190719101921";
+
+        var url = "https://testapi.open-platform.or.kr/account/balance?fintech_use_num=" + fintech_use_num + "&tran_dtime=" + tran_dtime;
+
+        var option = {
+            method: "GET",
+            url: url,
+            headers: {
+                Authorization: "Bearer " + accessToken,
+            },
+        };
+        request(option, (err, response, body) => {
+            if (err) {
+                console.error(err);
+                throw err;
+            } else {
+                var getBalance = JSON.parse(body);
+
+                res.json(JSON.parse(body));
+            }
+        });
     });
 });
 
 router.post('/transaction_list', (req, res) => {
-    const fintech_use_num = "199005200057726135180939";
-    const accessToken = "9dc3e1d3-7c9f-4311-bcd5-bdde471aef18";
-    var qs =
-        "?fintech_use_num=" + fintech_use_num + "&" +
-        "inquiry_type=A&" +
-        "from_date=20160404&" +
-        "to_date=20160405&" +
-        "sort_order=D&" +
-        "page_index=1&" +
-        "tran_dtime=20190712154216";
-    //+ "tran_dtime=20160310101921";
-    //+ "befor_inquiry_trace_info=123&"
-    //+ "list_tran_seqno=0"
 
-    var url = "https://testapi.open-platform.or.kr/account/transaction_list" + qs;
+    var userid = req.body.userid;
+    console.log(userid);
+    console.log("거래내역 조회");
 
-    var option = {
-        method: "GET",
-        url: url,
-        headers: {
-            Authorization: "Bearer " + accessToken,
-        },
-    };
-    request(option, (err, response, body) => {
-        if (err) {
-            console.error(err);
-            throw err;
-        } else {
-            res.json(JSON.parse(body));
-        }
+    connection.query("SELECT * FROM user WHERE id = ?", [userid], function (error, results) {
+
+        if (error) console.error(error);
+        console.log(results);
+        console.log(results[0].fintech_use_num);
+        console.log(results[0].accessToken);
+        fintech_use_num = results[0].fintech_use_num;
+        accessToken = results[0].accessToken;
+
+        tran_dtime = "20190719101921";
+
+        var qs =
+            "?fintech_use_num=" + fintech_use_num + "&" +
+            "inquiry_type=A&" +
+            "from_date=20160404&" +
+            "to_date=20160405&" +
+            "sort_order=D&" +
+            "page_index=1&" +
+            "tran_dtime=20190712154216";
+        //+ "tran_dtime=20160310101921";
+        +
+        "befor_inquiry_trace_info=123&" +
+        "list_tran_seqno=0"
+
+        var url = "https://testapi.open-platform.or.kr/account/transaction_list" + qs;
+        var option = {
+            method: "GET",
+            url: url,
+            headers: {
+                Authorization: "Bearer " + accessToken,
+            },
+        };
+        request(option, (err, response, body) => {
+            if (err) {
+                console.error(err);
+                throw err;
+            } else {
+                res.json(JSON.parse(body));
+            }
+        });
     });
 });
 
@@ -164,7 +192,6 @@ router.post('/deleteAccount', (req, res) => {
             res.json(body);
         }
     });
-
 });
 
 module.exports = router
