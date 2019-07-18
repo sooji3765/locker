@@ -2,7 +2,6 @@ const router = require('express').Router();
 var jwt = require('jsonwebtoken');
 var session = require('sessionstorage');
 
-
 var connection = require('../config/database');
 
 
