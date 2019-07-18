@@ -186,9 +186,7 @@
 
         <script>
             $("#registerBtn").click(function () {
-                var id = $("#registerId").val();
-                console.log(id);
-                location.href = '/reservation/register/' + id;
+                location.href = '/reservation/register/'+<%=keeper.id%>;
             });
         </script>
 </body>
