@@ -13,7 +13,7 @@
  <style>
        /* Set the size of the div element that contains the map */
       #map {
-        height: 600px;  /* The height is 400 pixels */
+        height: 660px;  /* The height is 400 pixels */
         width: 100%;  /* The width is the width of the web page */
        }
 
@@ -139,17 +139,6 @@
 	font-weight: 700;
 	padding: 5px 0;
 }
-/* .iw-bottom-gradient {
-	position: absolute;
-	width: 326px;
-	height: 25px;
-	bottom: 10px;
-	right: 18px;
-	background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-	background: -webkit-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-	background: -moz-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-	background: -ms-linear-gradient(top, rgba(255,255,255,0) 0%, rgba(255,255,255,1) 100%);
-} */
 /* infobox 스타일 */
     </style>    
 </head>
@@ -163,7 +152,6 @@
         <!-- Google map-->
         <div id="map"></div>
 
-        <button id="whereami" type="button" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-0 bottom-0">내 위치</button>
         </div>        
 
 <script>
@@ -191,24 +179,18 @@ function initMap() {
     icon: '/images/myMarker.png' 
   });
     setMarkers(map);
+
+  //컨트롤러
+  var centerControlDiv = document.createElement('div');
+  var centerControl = new CenterControl(centerControlDiv, map);
+
+  centerControlDiv.index = 1;
+  map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
+  //컨트롤러
 }
 
 function setMarkers(map) {
-  // var image = {
-  //   url: '/images/luggage64.png',
-  //   // This marker is 20 pixels wide by 32 pixels high.
-  //   size: new google.maps.Size(64, 64),
-  //   // The origin for this image is (0, 0).
-  //   origin: new google.maps.Point(32, 32),
-  //   // The anchor for this image is the base of the flagpole at (0, 32).
-  //   anchor: new google.maps.Point(0, 0)
-  // };
 
-  // var shape = {
-  //   coords: [1, 1, 1, 20, 18, 20, 18, 1],
-  //   type: 'poly'
-  // };
-  
 $.ajax({
             url:'http://localhost:3000/getMarker',
             type : 'GET',
@@ -218,7 +200,6 @@ $.ajax({
                         position: {lat: parseFloat(data[i].location_lat), lng: parseFloat(data[i].location_lon)},
                         map: map,
                         icon: '/images/luggage64.png',
-                        //shape :shape,
                         contents : data[i].id
                     });
                   
@@ -233,8 +214,6 @@ $.ajax({
                     '</div>' +
                   '</div>';                  
                   
-                    
-
                     let infowindow = new google.maps.InfoWindow({
                         content: contentString
                     });
@@ -253,26 +232,50 @@ $.ajax({
       
 }
 
- $('#whereami').click(function(){
-      console.log("클릭했음!");      
-        // Geolocation API에 액세스할 수 있는지를 확인
-        if (navigator.geolocation) {
+  // 컨트롤러
+      function CenterControl(controlDiv, map) {
+
+        // Set CSS for the control border.
+        var controlUI = document.createElement('div');
+        controlUI.style.backgroundColor = '#fff';
+        controlUI.style.border = '2px solid #fff';
+        controlUI.style.borderRadius = '3px';
+        controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
+        controlUI.style.cursor = 'pointer';
+        controlUI.style.marginBottom = '22px';
+        controlUI.style.textAlign = 'center';
+        controlUI.title = 'Click to recenter the map';
+        controlDiv.appendChild(controlUI);
+
+        // Set CSS for the control interior.
+        var controlText = document.createElement('div');
+        controlText.style.color = 'rgb(25,25,25)';
+        controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
+        controlText.style.fontSize = '16px';
+        controlText.style.lineHeight = '38px';
+        controlText.style.paddingLeft = '5px';
+        controlText.style.paddingRight = '5px';
+        controlText.innerHTML = '내 위치';
+        controlUI.appendChild(controlText);
+
+        // Setup the click event listeners: simply set the map to Chicago.
+        controlUI.addEventListener('click', function() {
+          if (navigator.geolocation) {
             //위치 정보를 얻기
             navigator.geolocation.getCurrentPosition (function(pos) {
-                $('#latitude').html(pos.coords.latitude);     // 위도
-                $('#longitude').html(pos.coords.longitude); // 경도
                 myLat = pos.coords.latitude;
                 myLng = pos.coords.longitude;
                 initialLocation = new google.maps.LatLng(myLat, myLng);
                 map.panTo(initialLocation);
-                myPosition.setPosition(initialLocation);
-
-                
+                myPosition.setPosition(initialLocation);       
             });
         } else {
             alert("이 브라우저에서는 Geolocation이 지원되지 않습니다.")
         }
-  });
+      });
+
+      }
+//컨트롤러
 
 </script>
 
