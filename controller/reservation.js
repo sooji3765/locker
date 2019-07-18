@@ -1,5 +1,6 @@
 const router = require('express').Router();
 var jwt = require('jsonwebtoken');
+var session = require('sessionstorage');
 
 
 var connection = require('../config/database');
@@ -95,13 +96,13 @@ router.get('/info/:id', (req, res) => {
 });
 
 router.get('/list', (req, res) => {
-    var user_id = 1;
+    var userId = session.getItem("userId");
     var sql = "SELECT r.id, r.keeper_id, r.user_id, k.name, r.cancel_flag, r.reservation_start_date, r.reservation_end_date " +
         "FROM reservation_info r join keeper k " +
         "on r.keeper_id = k.id " +
         "WHERE r.user_id =?"
 
-    connection.query(sql, [user_id], function (err, results) {
+    connection.query(sql, [userId], function (err, results) {
         if (err) console.error(err);
 
         console.log(results);

@@ -80,68 +80,40 @@
                         </div>
                     </div>
 
-                    <%# <div class="store-slide-1">
-                        <a href="#" class="store-slide-image"><img src="/images/placeholders/5b.png" alt=""></a>
-                        <div class="store-slide-title bottom-15">
-                            <h4 class="bottom-0 center-text">White SmartPhone</h4>
-                            <span class="color-gray2-dark under-heading center-text font-10">Sport Band, Water Proof,
-                                132 GB, Black</span>
-                        </div>
-                        <div class="store-slide-rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <div class="store-slide-price">
-                            <strong>$299.99<br> <del>$ 399.99</del></strong>
-                            <a href="#"><i class="fa fa-heart color-orange-dark"></i>Add to Wishlist<span
-                                    class="color-yellow1-dark">15 Items Remaining in Stock</span></a>
-                            <div class="clear"></div>
-                        </div>
-                        <div class="store-slide-button">
-                            <a href="/reservation"
-                                class="button bg-highlight button-round-large shadow-large button-full button-s uppercase ultrabold">RESERVATION</a>
-                        </div>
-                    </div> %>
-
                 </div>
             </div>
 
             <!-- remover -->
 
 
-            <div data-height="360" class="caption caption-margins round-medium shadow-large">
-                <div class="caption-center">
-                    <h1 class="center-text color-highlight bottom-30"><i class="fa fa-2x fa-clock"></i></h1>
-                    <h1 class="center-text color-white bolder fa-3x">HOW MANY PEOPLE USE</h1>
-                    <p class="boxed-text-huge under-heading color-white opacity-90">
-                        Check this place
-                    </p>
-                    <div class="countdown top-30 left-20 right-20">
-                        <div class="countdown-years disabled">
-                            <div class="color-white" id="years"></div>
-                            <em>years</em>
-                        </div>
-                        <div class="countdown-days">
-                            <div class="color-white" id="days"></div>
-                            <em>days</em>
-                        </div>
-                        <div class="countdown-hours">
-                            <div class="color-white" id="hours"></div>
-                            <em>hours</em>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <input type="hidden" id="registerId" value="<%=keeper.id%>">
-                    <a id="registerBtn"
-                        class="button button-s button-round-medium shadow-large bg-highlight top-30 button-center-large">RESERVATION</a>
+              <div class="content-boxed">
+            <div class="content">
+                <h3 class="bolder">Keeper Infomation</h3>
+                <p></p>               
+                <div class="link-list link-list-3">
+                    <a href="#" class="round-small shadow-tiny">
+                        <i class="fa fa-mobile color-blue2-dark"></i>
+                        <span><%=keeper.keeper_phone%></span>
+                    </a>
+                </div>           
+                <div class="link-list link-list-3">
+                    <a href="#" class="round-small shadow-tiny">
+                        <i class="fa fa-map color-red2-dark"></i>
+                        <span><%=keeper.address%></span>
+                    </a>
                 </div>
-                <div class="caption-overlay bg-black opacity-80"></div>
-                <div class="caption-bg bg-17"></div>
+                <div class="link-list link-list-3">
+                    <a href="#" class="round-small shadow-tiny">
+                        <i class="fa fa-info color-green2-dark"></i>
+                        <% if(keeper.insurance==1){%>
+                            <span>보험 있그</span>
+                        <%} else{%> 
+                            <span>보험 없그</span>
+                        <%}%>    
+                    </a>
+                </div>
             </div>
-
+        </div>
             <!-- add map -->
 
             <div class="content-boxed content-boxed-full">
