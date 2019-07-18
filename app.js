@@ -31,9 +31,6 @@ app.use('/account', require('./controller/account'));
 app.use('/mypage', require('./controller/mypage'));
 //app.use('/contract', require('./controller/contract.js'));
 
-
-
-// CHAT =========================================
 app.get('/chat', (req, res) => {
   res.render("chat");
 });
