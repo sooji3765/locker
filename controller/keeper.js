@@ -1,7 +1,7 @@
 const router = require('express').Router();
 var jwt = require('jsonwebtoken');
 
-
+var session = require('sessionstorage');
 var connection = require('../config/database');
 
 
@@ -65,5 +65,40 @@ router.post('/review_submit', (req, res) => {
                 });
         });
 });
+
+router.get('/register_keeper',function(req,res){
+    res.render('register_keeper');
+});
+
+router.get('/keeperList',function(req,res){
+    res.render('keeperList');
+});
+
+router.get('/keeperManagement',function(req,res){
+    res.render('keeperManagement');
+});
+
+router.post('/reg_keep_ok', (req, res) => {
+
+    const {
+      name,
+      address,
+      keeper_phone,
+      insurance,
+      location_lat,
+      location_lon
+    } = req.body;
+  
+    var userId = session.getItem("userId");
+  
+    var query = "INSERT INTO keeper (user_id, name, address, keeper_phone, insurance, location_lat, location_lon) VALUES (?, ?, ?, ?, ?, ?, ?);";
+      connection.query(query, [userId, name, address, keeper_phone, insurance, location_lat, location_lon], function (error, results, fields) {
+      if (error) {
+        throw error;
+      } else {
+        res.json("ok");
+      }
+    });
+  });
 
 module.exports = router;
