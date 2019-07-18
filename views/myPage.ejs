@@ -21,7 +21,7 @@
                     </a>
                     <div class="store-slide-title">
                         <strong>계정이름</strong>
-                        <em class="color-gray2-dark">이메일을 보여주갓쏘</em>
+                        <em class="color-gray2-dark"><div id="emailText"></div></em>
                     </div>
                     <div class="store-slide-button" style="text-align: right">
                         <a href="#"><i class="fa color-highlight">정보수정하기</i><i
@@ -65,35 +65,40 @@
         <!-- Page Content Class Ends Here-->
         <% include ./inc/menu.ejs %>
         <div class="menu-hider"></div>
+    </div>
+    <script type="text/javascript" src="/scripts/jquery.js"></script>
+    <script type="text/javascript" src="/scripts/plugins.js"></script>
+    <script type="text/javascript" src="/scripts/custom.js"></script>     
+    <script type="text/javascript" src="/scripts/common.js"></script>      
 
-        <script type="text/javascript" src="/scripts/jquery.js"></script>
-        <script type="text/javascript" src="/scripts/plugins.js"></script>
-        <script type="text/javascript" src="/scripts/custom.js"></script>     
-        <script type="text/javascript" src="/scripts/common.js"></script>      
-</body>
-<script>
-    $('#authLink').click(function () {
-        //////////////여기여기여기 손을 좀 봐야쓰것소
-        var client_id = "l7xx9a2f243e6f774376aaedf18a9f4e29e3";
-        var redirect_uri = "http://localhost:3000/callback";
-        var scope = "login inquiry transfer";
-        var response_type = "JSON";
-        var qs =
-            "?response_type=code&"
-            + "client_id=" + client_id + "&"
-            + "redirect_uri=" + redirect_uri + "&"
-            + "scope=" + scope + "&"
-            + "auth_type=0&"
-            + "invoke_type=ajax"
-        $.ajax({
-            url: 'https://testapi.open-platform.or.kr/oauth/2.0/authorize2' + qs,
-            type: 'GET',
-            success: function (data) {
-                window.name = "parents";
-                console.log(data.location);
-                var tmpwindow = window.open("about:blank");
-                tmpwindow.location = data.location;//추가
-            }
+    <script>
+
+        console.log("pagename: " + pagename);
+        alert(pagename);
+        $('#authLink').click(function () {
+            //////////////여기여기여기 손을 좀 봐야쓰것소
+            var client_id = "l7xx9a2f243e6f774376aaedf18a9f4e29e3";
+            var redirect_uri = "http://localhost:3000/auth/callback";
+            var scope = "login inquiry transfer";
+            var response_type = "JSON";
+            var qs =
+                "?response_type=code&"
+                + "client_id=" + client_id + "&"
+                + "redirect_uri=" + redirect_uri + "&"
+                + "scope=" + scope + "&"
+                + "auth_type=0&"
+                + "invoke_type=ajax"
+            $.ajax({
+                url: 'https://testapi.open-platform.or.kr/oauth/2.0/authorize2' + qs,
+                type: 'GET',
+                success: function (data) {
+                    window.name = "parents";
+                    console.log(data.location);
+                    var tmpwindow = window.open("about:blank");
+                    tmpwindow.location = data.location;//추가
+                }
+            })
         })
-    })
-</script>
+    </script>
+
+</body>

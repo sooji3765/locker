@@ -3,15 +3,15 @@ var TOKEN_KEY = "jwtToken";
 var userid = "";
 var username = "";
 var email = "";
+
+console.log(username);
+
 var pagename = window.location.pathname;
 
+console.log("pagename: " + pagename);
 // FUNCTIONS =============================================================
 function getJwtToken() {
     return sessionStorage.getItem(TOKEN_KEY);
-}
-
-function throwJwtToken() {
-    return sessionStorage.getItem(TOKEN_KEY, NULL);
 }
 
 function message(msg) {
@@ -41,6 +41,7 @@ function init(){
                     console.log("userid = " + userid);
                     console.log("username = " + username);
                     console.log("email = " + email);
+
                 }
             }
         })
