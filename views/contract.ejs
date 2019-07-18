@@ -15,7 +15,7 @@
                 <a href="#" class="back-button button button-xs button-round-huge bg-highlight">Back Home</a>
             </div> %>
             <div class="caption-center left-15 text-left">
-                <h1 class="color-white bolder">Pay by Eth</h1>
+                <h1 class="color-white bolder">Pay by Ethereum</h1>
                 <p class="under-heading color-white opacity-90 bottom-0">
                     
                 </p>
@@ -33,7 +33,7 @@
               <span>To address</span>
               <input id="toAddr" type="text" placeholder="to address" value="0x2fc0cb1146DCbeb12F2aff4EC663F3C8845bf836">
               <span>ether</span>
-              <input id="ether" type="number" placeholder="Ether">
+              <input id="ether" type="number" placeholder="Ether" value="<%= total_price %>">
             </div>
             <button id="transferBtn" type="button" class="right button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">Transfer</button>
           </div>
@@ -44,7 +44,7 @@
           
             <div class="input-style input-style-1 input-required">
               <span>message</span>
-              <input id="message" type="text" placeholder="Message" value="<%= data %>"">
+              <input id="message" type="text" placeholder="Message" value="<%= data %>">
             </div>
             <button id="submitBtn" type="button" class="right button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">Submit</button>
           </div>
@@ -87,8 +87,8 @@
           },
           success:function(data){
             setTimeout(function() {
-              alert("updated!")
-              location.reload();
+              console.log("updated!")
+              location.href = "/reservation/list";
             }, 3000);
           }
       })

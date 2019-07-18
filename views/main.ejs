@@ -91,29 +91,17 @@
     
 <body class="theme-light" data-background="none" data-highlight="blue2">
         
-<%# <div id="page"> %>
-    
-    <%# <div class="page-content">    %>
-    <!-- Google map-->
-    
          <!-- 검색창--> 
         <div id="pac-container" class="search-box search-color bg-highlight shadow-tiny round-small top-60 bottom-10">
             <input id="pac-input" type="text" placeholder="Search here..">
         </div>
 
+        <!-- Google map-->
         <div id="map"></div>
         
         <!-- 내 위치 버튼-->
         <button id="whereami" type="button" class="button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">내 위치</button>
         </div>
-
-        <%# <ul>
-            <li>위도:<span id="latitude"></span></li>
-            <li>경도:<span id="longitude"></span></li>
-        </ul> %>
-        <!-- 내 위치 버튼-->
-
-    <%# </div> %>
 
 <script>
 
@@ -138,6 +126,7 @@ function initMap() {
   myPosition = new google.maps.Marker({
     position: myLatLng,
     map: map,
+    icon: '/images/myMarker.png'
 });
 
     setMarkers(map);
@@ -146,7 +135,7 @@ function initMap() {
 function setMarkers(map) {
 
   var image = {
-    url: '/images/docker_marker(32).png',
+    url: '/images/luggage64.png',
     // This marker is 20 pixels wide by 32 pixels high.
     size: new google.maps.Size(64, 64),
     // The origin for this image is (0, 0).

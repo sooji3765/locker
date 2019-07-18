@@ -361,8 +361,10 @@
                         description: description
                     },
                     success: function (data) {
-                        if(data == '1'){ // 블록 체인
-                            location.href="/reservation/block";
+                        console.log(data.data);
+                        
+                        if(data.data == '1'){ // 블록 체인
+                            location.href="/contract/setmessage?total_price="+ total_price;
                         }else{ // 간편결제
                             console.log(data);
                             console.log(data.reservation_id);
