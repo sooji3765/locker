@@ -3,35 +3,44 @@ var jwt = require('jsonwebtoken');
 const mysql = require('mysql');
 
 const auth = require('./authcheck');
-var connection   = require('../config/database');
+var connection = require('../config/database');
+var session = require('sessionstorage');
+
+
+router.get('/myPage', (req, res) => {
+  res.render('myPage');
+});
 
 router.get('/login', (req, res) => {
   res.render('login');
 });
 
 router.post('/login', (req, res) => {
-  const {email, password} = req.body;
+  const {
+    email,
+    password
+  } = req.body;
   const secret = req.app.get('jwt-secret');
 
   var query = "SELECT * FROM user WHERE email =  ?";
-  
+
   connection.query(query, [email], function (error, results) {
-    if(results[0].password == password){
-      jwt.sign(
-        {
-          userName : results[0].name,
-          userId : results[0].id,
-          email : results[0].email
+    console.log(results[0]);
+    if (results[0].password == password) {
+      jwt.sign({
+          userName: results[0].name,
+          userId: results[0].id,
+          email: results[0].email
         },
-        secret,
-        {
-          expiresIn : '1d',
-          issuer : 'fintech.admin',
-          subject : 'user.login.info'
+        secret, {
+          expiresIn: '1d',
+          issuer: 'fintech.admin',
+          subject: 'user.login.info'
         },
         (err, token) => {
           //if (err) reject(err);
           console.log('로그인 성공', token)
+          session.setItem("userId", userId);
           //resolve(token);
           res.json(token)
         }
@@ -40,7 +49,7 @@ router.post('/login', (req, res) => {
       console.log('password가 맞지 않습니다.');
       onError('password가 맞지 않습니다.');
     }
-  }); 
+  });
 
   // error occured
   const onError = (error) => {
@@ -51,8 +60,8 @@ router.post('/login', (req, res) => {
 
 });
 
-router.get('/authcheck', auth, function(req, res){
-    res.json(req.decoded);
+router.get('/authcheck', auth, function (req, res) {
+  res.json(req.decoded);
 });
 // router.get('/authcheck', (req, res) => {
 //   // read the token from header or url 
@@ -102,7 +111,14 @@ router.get('/signup', (req, res) => {
 
 router.post('/join', (req, res) => {
 
-  const {name, email, password, accessToken, refreshToken, userseqnum} = req.body;
+  const {
+    name,
+    email,
+    password,
+    accessToken,
+    refreshToken,
+    userseqnum
+  } = req.body;
 
   var query = "INSERT INTO fintech.user (name, email, password, access_token, refresh_token, finusernum) VALUES (?, ?, ?, ?, ?, ?);";
 
@@ -123,4 +139,4 @@ router.get('/list', auth, (req, res) => {
   });
 });
 
-module.exports = router; 
+module.exports = router;
