@@ -131,6 +131,7 @@ function initMap() {
 
 function setMarkers(map) {
 
+  var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
   // var image = {
   //   url: '/images/luggage64.png',
   //   // This marker is 20 pixels wide by 32 pixels high.
@@ -158,7 +159,7 @@ $.ajax({
                         //shape :shape,
                         contents : data[i].id
                     });
-                    
+                  
                     var contentString = '<div id="iw-container">' +
                     '<div class="iw-title">'+data[i].name+'</div>' +
                     '<div class="iw-content">' +
@@ -170,7 +171,7 @@ $.ajax({
                     '</div>' +
                     '<div class="iw-bottom-gradient"></div>' +
                   '</div>';                  
-
+              
                     let infowindow = new google.maps.InfoWindow({
                         content: contentString
                     });
@@ -184,6 +185,7 @@ $.ajax({
                      });
                 }
         }
+        
     })
       
 }
