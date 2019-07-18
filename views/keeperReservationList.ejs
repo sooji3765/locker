@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, viewport-fit=cover" />
+    <title>ReservationList</title>
+    <link
+        href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900,900i|Source+Sans+Pro:300,300i,400,400i,600,600i,700,700i,900,900i"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../styles/style.css">
+    <link rel="stylesheet" type="text/css" href="../styles/framework.css">
+    <link rel="stylesheet" type="text/css" href="../fonts/css/fontawesome-all.min.css">
+</head>
+
+<body class="theme-light" data-background="none" data-highlight="blue2">
+
+    <div id="page">
+            
+     <% include ./inc/header.ejs %>
+    <% include ./inc/footer.ejs %>
+    
+        <!-- List foreach  -->
+        <div class="page-content header-clear-medium">
+
+            <link rel="stylesheet" type="text/css" href="../styles/news.css">
+            <div id="list"></div>    
+            
+            <!-- end foreach -->
+
+        </div>
+        <!-- Page Content Class Ends Here-->
+
+
+
+
+        <!-- Menu Share-->
+
+        <div class="menu-hider"></div>
+    </div>
+
+
+    <script type="text/javascript" src="../scripts/jquery.js"></script>
+    <script type="text/javascript" src="../scripts/plugins.js"></script>
+    <script type="text/javascript" src="../scripts/custom.js"></script>
+    <script type="text/javascript" src="../scripts/common.js"></script>
+</body>
+    <script>
+    console.log("reservationList is loaded")
+    $(document).ready(function(){
+
+        console.log(userid);
+        $.ajax({
+                url:'/keeper/list',
+                type : 'POST',
+                data:{
+                    userid : userid
+                },
+                success:function(data){
+                    if (data !== null){
+                       console.log(data[0].id);
+                        for(var i = 0; i < data.length ; i++){
+
+                            var text =  "<div id='reservation_info' data-height='250' class='caption caption-margins round-medium shadow-large'>"
+                            +"<input type='hidden' id='reservation_id' value="+data[i].id+">"
+                            +"<div class='caption-top top-20 left-20'>"
+                    +"<span class='bg-green1-dark color-white wrapped-text-small uppercase bold font-15'>Confirmation</span>"
+                +"</div>"
+                +"<div class='caption-bottom left-20 right-20'>"
+                    +"<h1 class='color-white bolder font-22'>"+data[i].name+"</h1>"
+                    +"<p class='line-height-medium color-white opacity-80 bottom-10'>"+data[i].reservation_start_date+"</p>"
+                    +"<p class='line-height-medium color-white opacity-80 bottom-10'>"
+                    +"Reservation Number :"+data[i].id+"</p>"
+                    +"<input type='hidden' value=''>"
+                    +"<a href='/reservation/info/"+data[i].id+"' class='button button-m button-full shadow-small button-circle bg-blue2-dark'>GO INFO</a>"
+                   + "<div class='clear'></div>"
+                +"</div>"
+                +"<div class='caption-overlay bg-black opacity-80'></div>"
+                +"<div class='caption-bg bg-21'></div>"
+                +"</div>";
+            
+                            //$("#list").append("<b>"+data[i].id+"</b><br>");
+                            $("#list").append(text);
+                        }
+                    }
+                },
+                error:function(data){
+                    message("data not found!");
+                }
+            });
+        });
+        
+      
+    </script>
+</body>

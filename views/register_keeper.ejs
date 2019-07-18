@@ -3,6 +3,96 @@
 
 <head>
     <% include ./inc/head.ejs %>
+    <style>
+        /* Set the size of the div element that contains the map */
+       #map {
+         height: 600px;  /* The height is 400 pixels */
+         width: 100%;  /* The width is the width of the web page */
+        }
+ 
+        /* 검색창 스타일 */
+        #description {
+         font-family: Roboto;
+         font-size: 15px;
+         font-weight: 300;
+       }
+ 
+       #infowindow-content .title {
+         font-weight: bold;
+       }
+ 
+       #infowindow-content {
+         display: none;
+       }
+ 
+       #map #infowindow-content {
+         display: inline;
+       }
+ 
+       .pac-card {
+         margin: 10px 10px 0 0;
+         border-radius: 2px 0 0 2px;
+         box-sizing: border-box;
+         -moz-box-sizing: border-box;
+         outline: none;
+         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+         background-color: #fff;
+         font-family: Roboto;
+       }
+ 
+       #pac-container {
+         padding-bottom: 0;
+         margin-right: 0;
+       }
+ 
+       .pac-controls {
+         display: inline-block;
+         padding: 5px 11px;
+       }
+ 
+       .pac-controls label {
+         font-family: Roboto;
+         font-size: 13px;
+         font-weight: 300;
+       }
+ 
+       #pac-input {
+         background-color: bg-highlight;
+         font-family: Roboto;
+         font-size: 15px;
+         font-weight: 300;
+         margin-left: 12px;
+         padding: 0 0 0 0;
+         text-overflow: ellipsis;
+         width: 800px;
+       }
+ 
+       #pac-input:focus {
+         border-color: #4d90fe;
+       }
+ 
+       #title {
+         color: #fff;
+         background-color: #4d90fe;
+         font-size: 25px;
+         font-weight: 500;
+         padding: 6px 12px;
+       }
+       /* 여기까지 검색창 스타일 */
+     </style>
+     <script src="https://code.jquery.com/jquery-2.2.4.js"
+     integrity="sha256-iT6Q9iMJYuQiMWNd9lDyBUStIq/8PuOW33aOqmvFpqI="
+     crossorigin="anonymous"></script>
+
+     <script>
+         function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -33.8688, lng: 151.2195},
+          zoom: 13
+        });
+        }
+     </script>
+
 </head>
 
 <body class="theme-light" data-background="none" data-highlight="blue2">
@@ -36,8 +126,24 @@
                         </p>
                     </div>
                     <div class="store-slide-button" style="text-align: right">
-                        <a href="#"><i class="fa color-highlight">Go!</i><i class="fa fa-arrow-right color-theme"></i></a>
-                        <!--result : (id=)address , locations-->
+                        <a href="#" data-menu="menu-settings"><i class="fa color-highlight">Go!</i><i class="fa fa-arrow-right color-theme"></i></a>
+                        <!-- -->
+                        <div id="menu-settings" class="menu menu-box-bottom menu-box-detached round-large" data-menu-height="310" data-menu-effect="menu-over" style="height: 310px; opacity: 1; display: block;">
+                            <div class="content bottom-0">
+                                <!--
+                                <div class="menu-title"><a href="#" class="close-menu"><i class="fa fa-times"></i></a></div>
+                                -->
+                                <!-- 검색창--> 
+                                <div id="pac-container" class="search-box search-color bg-highlight shadow-tiny round-small top-60 bottom-10">
+                                <input id="pac-input" type="text" placeholder="Search here..">
+                                <div id="map" style="display:none"></div>
+                                </div>
+
+                            </div> 
+                            
+                        </div>
+                        <!-- -->
+
                     </div>
                 </div>
             </div>
@@ -85,7 +191,12 @@
         <script type="text/javascript" src="/scripts/jquery.js"></script>
         <script type="text/javascript" src="/scripts/plugins.js"></script>
         <script type="text/javascript" src="/scripts/custom.js"></script>     
-        <script type="text/javascript" src="/scripts/common.js"></script>      
+        <script type="text/javascript" src="/scripts/common.js"></script> 
+        <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhHkFo-bYv_U9iLedicra9em2FpndEJS0&libraries=places&callback=initMap" defer async>
+    </script> 
+        <script type="text/javascript" src="/scripts/autoSearch2.js"></script>     
+
 </body>
 
 <script>
@@ -116,4 +227,6 @@
             }
           })
         });
-      </script>
+
+        
+</script>

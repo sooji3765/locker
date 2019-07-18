@@ -66,39 +66,64 @@ router.post('/review_submit', (req, res) => {
         });
 });
 
-router.get('/register_keeper',function(req,res){
+router.get('/register_keeper', function (req, res) {
     res.render('register_keeper');
 });
 
-router.get('/keeperList',function(req,res){
+router.get('/keeperList', function (req, res) {
     res.render('keeperList');
 });
 
-router.get('/keeperManagement',function(req,res){
+router.get('/keeperManagement', function (req, res) {
     res.render('keeperManagement');
+});
+
+router.get('/list', function (req, res) {
+    res.render('keeperReservationList');
+});
+
+router.post('/list', function (req, res) {
+    var userId = req.body.userid;
+    console.log("post ===> list" + userId);
+
+    connection.query("SELECT id FROM keeper WHERE user_id= ?", [userId], function (error, row) {
+        var keeperId = row[0].id;
+        console.log(row[0].id);
+        var sql = "SELECT r.id, r.keeper_id, r.user_id, k.name, r.cancel_flag, r.reservation_start_date, r.reservation_end_date " +
+            "FROM reservation_info r join keeper k " +
+            "on r.keeper_id = k.id " +
+            "WHERE k.id =?";
+
+        connection.query(sql, [keeperId], function (err, results) {
+            if (err) console.error(err);
+
+            console.log(results);
+            res.json(results);
+        });
+    });
 });
 
 router.post('/reg_keep_ok', (req, res) => {
 
     const {
-      name,
-      address,
-      keeper_phone,
-      insurance,
-      location_lat,
-      location_lon
+        name,
+        address,
+        keeper_phone,
+        insurance,
+        location_lat,
+        location_lon
     } = req.body;
-  
+
     var userId = session.getItem("userId");
-  
+
     var query = "INSERT INTO keeper (user_id, name, address, keeper_phone, insurance, location_lat, location_lon) VALUES (?, ?, ?, ?, ?, ?, ?);";
-      connection.query(query, [userId, name, address, keeper_phone, insurance, location_lat, location_lon], function (error, results, fields) {
-      if (error) {
-        throw error;
-      } else {
-        res.json("ok");
-      }
+    connection.query(query, [userId, name, address, keeper_phone, insurance, location_lat, location_lon], function (error, results, fields) {
+        if (error) {
+            throw error;
+        } else {
+            res.json("ok");
+        }
     });
-  });
+});
 
 module.exports = router;
