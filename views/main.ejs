@@ -116,19 +116,22 @@
     <%# </div> %>
 
 <script>
-// Initialize and add the map
-var myLat = 0;
-var myLng = 0;
+
+var myLat = 37.494978;
+var myLng = 127.122406;
 var map;
 var myPosition;
 
+// Initialize and add the map
+
 function initMap() {
+    
   // My location
   console.log("지도를 찍었습니다.") 
   var myLatLng = {lat: myLat, lng: myLng};
 
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 20,
+    zoom: 17,
     center: myLatLng
   });
   
