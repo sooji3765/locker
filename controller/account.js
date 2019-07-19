@@ -103,7 +103,7 @@ router.post('/transaction_list', (req, res) => {
             "to_date=20160405&" +
             "sort_order=D&" +
             "page_index=1&" +
-            "tran_dtime=20190712154216";
+            "tran_dtime=20190719154216";
         //+ "tran_dtime=20160310101921";
         +
         "befor_inquiry_trace_info=123&" +

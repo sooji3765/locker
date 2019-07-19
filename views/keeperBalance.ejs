@@ -27,18 +27,26 @@
                 <p id="balance"></p>
             </div>   
         </div>
+
+        <div class="content-boxed">
+            <div class="content">
+                <h4 class="bold">거래 내역</h4>
+                <button id="btns" class ="button">조회하기</button>
+                 <table class="table-borders">
+                <tr>
+                    <th>거래일</th>
+                    <th>거래시간</th>
+                    <th>입출금구분</th>
+                    <th>통장인자내역</th>
+                    <th>거래금액</th>
+                    <th>입금</th>
+                    <th>잔액</th>
+                </tr>
+                <tbody id="transactionTable"></tbody>
+            </table>
+            </div>   
+        </div>
                         
-        <div class="content">
-            <div class="content content-box bg-highlight round-medium shadow-large">
-                <h4 class="color-white bold top-10">거래 내역</h4>
-                 <button id="btns" class ="button">조회하기</button>
-                <p class="color-white bottom-10">
-                    This box is a solid color. You can set it to the page highlight or set any color from the pack. 
-                </p>
-            </div>        
-        </div>    
-                        
-       
         <div class="divider divider-margins"></div>
     
     </div>
@@ -55,16 +63,16 @@
 <script>
 
 $("#btn").click(function(){
-$.ajax({
-        url: 'http://localhost:3000/account/balance',
-        type: 'POST',
-        data: {
-            userid: userid        
-        },
-        success: function (data) {
-            console.log(data);
-            $("#balance").html(data.balance_amt+'원');
-        }
+    $.ajax({
+            url: 'http://localhost:3000/account/balance',
+            type: 'POST',
+            data: {
+                userid: userid        
+            },
+            success: function (data) {
+                console.log(data);
+                $("#balance").html(data.balance_amt+'원');
+            }
     });
     return false;
 });
@@ -78,11 +86,25 @@ $("#btns").click(function(){
         },
         success: function (data) {
             console.log(data);
-        }
+
+            var resultList = data.res_list;
+            for (let i = 0; i < resultList.length; i++) {
+                const element = resultList[i];
+                $("#transactionTable").append(
+                    '<tr>' +
+                    '<td>'+element.tran_date+'</td>' +
+                    '<td>'+element.tran_time+'</td>' +
+                    '<td>'+element.inout_type+'</td>' +
+                    '<td>'+element.tran_type+'</td>' +
+                    '<td>'+element.print_content+'</td>' +
+                    '<td>'+element.tran_amt+'</td>' +
+                    '<td>'+element.after_balance_amt+'</td>'+
+                    '</tr>'
+                )
+            }
+        }       
     });
     return false;
 });
-
- 
 </script>
 </body>
