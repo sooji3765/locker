@@ -176,6 +176,7 @@ function initMap() {
   myPosition = new google.maps.Marker({
     position: myLatLng,
     map: map,
+    zIndex: 9999999,
     icon: '/images/myMarker.png' 
   });
 
@@ -213,9 +214,10 @@ $.ajax({
                       '<div class="iw-subTitle">정보</div>' +
                       '<img src="/images/profile128.png"'+
                       '<br>Address. '+data[i].address+
-                      '<br>Phone. '+data[i].keeper_phone+'<br>e-mail:'+data[i].email+'<br>www: www.myvistaalegre.com</p>'+
-                      '<a href="/keeper/store/'+data[i].id+'" class="button button-m shadow-small button-round-small bg-blue2-dark">결제</a>' +
+                      '<br>Phone. '+data[i].keeper_phone+'<br>e-mail:'+data[i].email+'<br>'+
                     '</div>' +
+                    '<div class ="iw-content"><a href="/keeper/store/'+data[i].id+'" class="button button-m shadow-small button-round-small bg-blue2-dark">결제</a>' +
+                    '<a href="/keeper/store/'+data[i].id+'" class="button button-m shadow-small button-round-small bg-blue2-dark">결제</a></div>' +
                   '</div>';                  
                   
                     let infowindow = new google.maps.InfoWindow({
