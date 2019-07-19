@@ -45,6 +45,12 @@
                                 <br> Reservation Number : <%=list.id %>
                                 <br> Keeper Name : <%=list.name%>
                                 <br> Reservation Date : <%=list.reservation_start_date%>
+                                <br> Total Price : <%=list.total_price%>
+                                <%if(list.pay_state==1){%>
+                                <br> The term of payment : Block Chain
+                                <% }else{%>
+                                <br> The term of payment : Easy Payment
+                                <%}%> 
                             </p>
                             <div class="divider"></div>
                             <p class="contact-information">
