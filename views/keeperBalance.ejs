@@ -23,7 +23,6 @@
         <div class="content-boxed">
             <div class="content">
                 <h4 class="bold">계좌 잔액</h4>
-                <button id="btn" class ="button">조회하기</button>
                 <p id="balance"></p>
             </div>   
         </div>
@@ -31,7 +30,6 @@
         <div class="content-boxed">
             <div class="content">
                 <h4 class="bold">거래 내역</h4>
-                <button id="btns" class ="button">조회하기</button>
                  <table class="table-borders">
                 <tr>
                     <th>거래일</th>
@@ -61,50 +59,47 @@
 <script type="text/javascript" src="/scripts/common.js"></script>
 
 <script>
+    $(document).ready(function(){  
 
-$("#btn").click(function(){
-    $.ajax({
-            url: 'http://localhost:3000/account/balance',
+        $.ajax({
+                url: 'http://localhost:3000/account/balance',
+                type: 'POST',
+                data: {
+                    userid: userid        
+                },
+                success: function (data) {
+                    console.log(data);
+                    $("#balance").html(data.balance_amt+'원');
+                }
+        });
+
+        $.ajax({
+            url: 'http://localhost:3000/account/transaction_list',
             type: 'POST',
             data: {
                 userid: userid        
             },
             success: function (data) {
                 console.log(data);
-                $("#balance").html(data.balance_amt+'원');
-            }
-    });
-    return false;
-});
 
-$("#btns").click(function(){
-    $.ajax({
-        url: 'http://localhost:3000/account/transaction_list',
-        type: 'POST',
-        data: {
-            userid: userid        
-        },
-        success: function (data) {
-            console.log(data);
+                var resultList = data.res_list;
+                for (let i = 0; i < resultList.length; i++) {
+                    const element = resultList[i];
+                    $("#transactionTable").append(
+                        '<tr>' +
+                        '<td>'+element.tran_date+'</td>' +
+                        '<td>'+element.tran_time+'</td>' +
+                        '<td>'+element.inout_type+'</td>' +
+                        '<td>'+element.tran_type+'</td>' +
+                        '<td>'+element.print_content+'</td>' +
+                        '<td>'+element.tran_amt+'</td>' +
+                        '<td>'+element.after_balance_amt+'</td>'+
+                        '</tr>'
+                    )
+                }
+            }       
+        });
 
-            var resultList = data.res_list;
-            for (let i = 0; i < resultList.length; i++) {
-                const element = resultList[i];
-                $("#transactionTable").append(
-                    '<tr>' +
-                    '<td>'+element.tran_date+'</td>' +
-                    '<td>'+element.tran_time+'</td>' +
-                    '<td>'+element.inout_type+'</td>' +
-                    '<td>'+element.tran_type+'</td>' +
-                    '<td>'+element.print_content+'</td>' +
-                    '<td>'+element.tran_amt+'</td>' +
-                    '<td>'+element.after_balance_amt+'</td>'+
-                    '</tr>'
-                )
-            }
-        }       
     });
-    return false;
-});
 </script>
 </body>
