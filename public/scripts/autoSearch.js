@@ -18,6 +18,7 @@ var searchInfowindowContent = document.getElementById('infowindow-content');
 searchInfowindow.setContent(searchInfowindowContent);
 var searchMarker = new google.maps.Marker({
     map: map,
+    icon: '/images/orientation64.png',
     anchorPoint: new google.maps.Point(0, -29)
 });
 
@@ -49,29 +50,4 @@ autocomplete.addListener('place_changed', function() {
             (place.address_components[2] && place.address_components[2].short_name || '')
             ].join(' ');
         }
-
-        //searchInfowindowContent.children['place-icon'].src = place.icon;
-        // searchInfowindowContent.children['place-name'].textContent = place.name;
-        // searchInfowindowContent.children['place-address'].textContent = address;
-        // searchInfowindow.open(map, searchMarker);
         });
-
-        // Sets a listener on a radio button to change the filter type on Places
-        // Autocomplete.
-        // function setupClickListener(id, types) {
-        //   var radioButton = document.getElementById(id);
-        //       radioButton.addEventListener('click', function() {
-        //       autocomplete.setTypes(types);
-        //   });
-        // }
-
-        // setupClickListener('changetype-all', []);
-        // setupClickListener('changetype-address', ['address']);
-        // setupClickListener('changetype-establishment', ['establishment']);
-        // setupClickListener('changetype-geocode', ['geocode']);
-
-        // document.getElementById('use-strict-bounds')
-        //     .addEventListener('click', function() {
-        //       console.log('Checkbox clicked! New state=' + this.checked);
-        //       autocomplete.setOptions({strictBounds: this.checked});
-        // });

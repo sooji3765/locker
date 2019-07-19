@@ -21,7 +21,8 @@
                     </a>
                     <div class="store-slide-title">
                         <strong>Account</strong>
-                        <em class="color-gray2-dark"><div id="emailText">email</div></em>
+                        <em class="color-gray2-dark"><div id="username"></div></em>
+                        <em class="color-gray2-dark"><div id="email"></div></em>
                     </div>
                     <div class="store-slide-button" style="text-align: right">
                         <a href="#"><i class="fa color-highlight">Go to change</i><i
@@ -107,27 +108,31 @@
     <script type="text/javascript" src="/scripts/common.js"></script>      
 </body>
 <script>
-    $('#authLink').click(function () {
-        var client_id = "l7xx9a2f243e6f774376aaedf18a9f4e29e3";
-        var redirect_uri = "http://localhost:3000/auth/callback";
-        var scope = "login inquiry transfer";
-        var response_type = "JSON";
-        var qs =
-            "?response_type=code&"
-            + "client_id=" + client_id + "&"
-            + "redirect_uri=" + redirect_uri + "&"
-            + "scope=" + scope + "&"
-            + "auth_type=0&"
-            + "invoke_type=ajax"
-        $.ajax({
-            url: 'https://testapi.open-platform.or.kr/oauth/2.0/authorize2' + qs,
-            type: 'GET',
-            success: function (data) {
-                window.name = "parents";
-                console.log(data.location);
-                var tmpwindow = window.open("about:blank");
-                tmpwindow.location = data.location;//추가
-            }
+    $(document).ready(function(){  
+        $('#authLink').click(function () {
+            var client_id = "l7xx9a2f243e6f774376aaedf18a9f4e29e3";
+            var redirect_uri = "http://localhost:3000/auth/callback";
+            var scope = "login inquiry transfer";
+            var response_type = "JSON";
+            var qs =
+                "?response_type=code&"
+                + "client_id=" + client_id + "&"
+                + "redirect_uri=" + redirect_uri + "&"
+                + "scope=" + scope + "&"
+                + "auth_type=0&"
+                + "invoke_type=ajax"
+            $.ajax({
+                url: 'https://testapi.open-platform.or.kr/oauth/2.0/authorize2' + qs,
+                type: 'GET',
+                success: function (data) {
+                    window.name = "parents";
+                    console.log(data.location);
+                    var tmpwindow = window.open("about:blank");
+                    tmpwindow.location = data.location;//추가
+                }
+            })
         })
-    })
+        $('#username').html('Username : ' + username);
+        $('#email').html('Email : ' + email);
+    }); 
 </script>
