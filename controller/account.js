@@ -27,7 +27,7 @@ router.post('/search', (req, res) => {
             var fintech_use_num = accountResult.res_list[0].fintech_use_num;
             console.log(fintech_use_num);
             connection.query("UPDATE user SET fintech_use_num=? WHERE id =? ", [fintech_use_num, user_id],
-                function (error, result) {
+                function(error, result) {
                     res.json(fintech_use_num);
                 });
         }
@@ -37,7 +37,7 @@ router.post('/search', (req, res) => {
 router.post('/getdb', (req, res) => {
     var user_id = req.body.userid;
 
-    connection.query("SELECT * FROM user WHERE id=?", [user_id], function (err, results) {
+    connection.query("SELECT * FROM user WHERE id=?", [user_id], function(err, results) {
         console.log(results);
         res.json(results[0]);
     });
@@ -48,7 +48,7 @@ router.post('/balance', (req, res) => {
     var userid = req.body.userid;
     console.log(userid);
 
-    connection.query("SELECT * FROM user WHERE id = ?", [userid], function (error, results) {
+    connection.query("SELECT * FROM user WHERE id = ?", [userid], function(error, results) {
 
         if (error) console.error(error);
         console.log(results);
@@ -86,7 +86,7 @@ router.post('/transaction_list', (req, res) => {
     console.log(userid);
     console.log("거래내역 조회");
 
-    connection.query("SELECT * FROM user WHERE id = ?", [userid], function (error, results) {
+    connection.query("SELECT * FROM user WHERE id = ?", [userid], function(error, results) {
 
         if (error) console.error(error);
         console.log(results);
@@ -94,8 +94,7 @@ router.post('/transaction_list', (req, res) => {
         console.log(results[0].accessToken);
         fintech_use_num = results[0].fintech_use_num;
         accessToken = results[0].accessToken;
-
-        tran_dtime = "20190719101921";
+        tran_dtime = "20190719121921";
 
         var qs =
             "?fintech_use_num=" + fintech_use_num + "&" +
@@ -134,7 +133,7 @@ router.post('/transfer/withdraw', (req, res) => {
     user_id = req.body.user_id;
     var url = "https://testapi.open-platform.or.kr/transfer/withdraw";
 
-    connection.query("SELECT * FROM user WHERE id=?", [user_id], function (error, results) {
+    connection.query("SELECT * FROM user WHERE id=?", [user_id], function(error, results) {
 
         var accessToken = results[0].accessToken;
         var fintech_use_num = results[0].fintech_use_num;
@@ -148,10 +147,10 @@ router.post('/transfer/withdraw', (req, res) => {
                 "Content-Type": "application/json; charset=UTF-8",
             },
             json: {
-                dps_print_content: "쇼핑몰환불",
+                dps_print_content: "Keeper4",
                 fintech_use_num: fintech_use_num,
                 tran_amt: "10000",
-                tran_dtime: "20160310101921"
+                tran_dtime: "20190718101921"
             }
         };
 
