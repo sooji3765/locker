@@ -15,7 +15,7 @@
                 <a href="#" class="back-button button button-xs button-round-huge bg-highlight">Back Home</a>
             </div> %>
             <div class="caption-center left-15 text-left">
-                <h1 class="color-white bolder">Pay by Ethereum</h1>
+                <h1 class="color-white bolder">Pay by Ether</h1>
                 <p class="under-heading color-white opacity-90 bottom-0">
                     
                 </p>
@@ -25,31 +25,33 @@
         </div> 
         <div class="content-boxed">
           <div class="content">
+            <h3 class="bolder">Ethereum private Network</h3>
             <div class="input-style input-style-1 input-required">
-              <span>From address</span>
+              <span>Client Address</span>
               <input id="fromAddr" type="text" placeholder="from address" value="0x3bbb90ee2bbd6536aa9a79bc9ee235ac6801b373">
-              <span>Password</span>
+              <span>Wallet Password</span>
               <input id="passphase" type="password" placeholder="password" value="user1">
-              <span>To address</span>
+              <span>Keeper address</span>
               <input id="toAddr" type="text" placeholder="to address" value="0x2fc0cb1146DCbeb12F2aff4EC663F3C8845bf836">
-              <span>ether</span>
+              <span>Total</span>
               <input id="ether" type="number" placeholder="Ether" value="<%= total_price %>">
+              <span>Description</span>
               <input id="description" type="text" placeholder="description" value="<%= description %>">
             </div>
             <button id="transferBtn" type="button" class="right button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">Transfer</button>
           </div>
         </div>
+<%# 
         <div class="content-boxed">
           <div class="content">
-            <h3 class="bolder">Ethereum private Network data</h3>
-          
             <div class="input-style input-style-1 input-required">
               <span>message</span>
-              <input id="message" type="text" placeholder="Message" value="<%= data %>">
+              <input id="message" type="text" placeholder="Message" value="">
             </div>
             <button id="submitBtn" type="button" class="right button button-full button-m shadow-large button-round-small bg-green1-dark top-10 bottom-0">Submit</button>
           </div>
-        </div>
+        </div> %>
+
     </div>
     <!-- Page Content Class Ends Here-->
     <% include ./inc/menu.ejs %>
